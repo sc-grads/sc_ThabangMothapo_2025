@@ -1,0 +1,34 @@
+name: Setup AutoTest Database
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-db:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install SQL Server Tools
+        run: |
+          choco install sqlserver-cmdlineutils -y
+        shell: pwsh
+
+      - name: Run SQL Script
+        env:
+          SQL_SERVER: abcd1234.pinggy.io:54321  # Replace with your Pinggy URL:port
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -i scripts/setup.sql -C
+
+      - name: Verify Database Creation
+        env:
+          SQL_SERVER: abcd1234.pinggy.io:54321  # Replace with your Pinggy URL:port
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -Q "USE AutoTest; SELECT * FROM [user];"
