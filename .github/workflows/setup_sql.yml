@@ -82,7 +82,7 @@ jobs:
 
         run: |
 
-          sqlcmd -S "%SQL_SERVER%" -U "%SQL_USER%" -P "%SQL_PASSWORD%" -i setup.sql -b -o sql_output.log
+          sqlcmd -S "%SQL_SERVER%" -U "%SQL_USER%" -P "%SQL_PASSWORD%" -i scripts/setup.sql -b -o sql_output.log 
 
           type sql_output.log
  
