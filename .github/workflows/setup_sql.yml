@@ -19,7 +19,7 @@ jobs:
 
       - name: Run SQL Script
         env:
-          SQL_SERVER: abcd1234.pinggy.io:54321  # Replace with your Pinggy URL:port
+          SQL_SERVER: ${{ secrets.SQL_SERVER }}  # Replace with your Pinggy URL:port
           SQL_USER: ${{ secrets.SQL_USER }}
           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
         run: |
@@ -27,8 +27,8 @@ jobs:
 
       - name: Verify Database Creation
         env:
-          SQL_SERVER: abcd1234.pinggy.io:54321  # Replace with your Pinggy URL:port
-          SQL_USER: ${{ secrets.SQL_USER }}
-          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+           SQL_SERVER: ${{ secrets.SQL_SERVER }}  # Replace with your Pinggy URL:port
+           SQL_USER: ${{ secrets.SQL_USER }}
+           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
         run: |
           sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -Q "USE AutoTest; SELECT * FROM [user];"
