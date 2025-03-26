@@ -27,8 +27,9 @@ jobs:
 
       - name: Verify Database Creation
         env:
-           SQL_SERVER: ${{ secrets.SQL_SERVER }}  # Replace with your Pinggy URL:port
-           SQL_USER: ${{ secrets.SQL_USER }}
-           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+           SQL_SERVER: "tcp:0.tcp.pinggy.io,1433"
+           SQL_USER: "Auto_user"
+           SQL_PASSWORD: "SambePassword@1"
+
         run: |
           sqlcmd -S $env:SQL_SERVER -U $env:SQL_USER -P $env:SQL_PASSWORD -Q "USE AutoTest; SELECT * FROM [user];"
