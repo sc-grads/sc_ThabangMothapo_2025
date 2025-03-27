@@ -1,88 +1,57 @@
 name: Setup SQL Server Database
- 
+
 on: [push]
- 
+
 jobs:
-
   setup-db:
-
-    runs-on: windows-latest
+    runs-on: ubuntu-latest  # Changed to Ubuntu runner
 
     steps:
-
       - name: Checkout code
+        uses: actions/checkout@v3
 
-        uses: actions/checkout@v3  # Updated to v3
- 
-      - name: Install Chocolatey (if needed)
-
-        shell: powershell
-
+      - name: Install Microsoft SQL Server Tools (sqlcmd) on Ubuntu
         run: |
+          # Add Microsoft's repository for SQL Server tools
+          sudo apt-get update
+          sudo apt-get install -y curl apt-transport-https gnupg
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          
+          # Install mssql-tools (includes sqlcmd)
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
+          
+          # Add sqlcmd to PATH
+          echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
 
-          Set-ExecutionPolicy Bypass -Scope Process -Force
-
-          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-
-          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
- 
-      - name: Install SQLCMD
-
-        shell: powershell
-
-        run: choco install sqlserver-cmdlineutils -y --no-progress
- 
       - name: Verify SQLCMD installation
-
-        shell: cmd
-
+        shell: bash
         run: sqlcmd -?
- 
+
       - name: Debug print variables
-
-        shell: cmd
-
+        shell: bash
         run: |
-
-          echo "SQL_SERVER: %SQL_SERVER%"
-
-          echo "SQL_USER: %SQL_USER%"
-
+          echo "SQL_SERVER: $SQL_SERVER"
+          echo "SQL_USER: $SQL_USER"
           echo "SQL_PASSWORD: ***"  # Masked for security
- 
+
       - name: Test SQL Server connection
-
-        shell: cmd
-
+        shell: bash
         env:
-
           SQL_SERVER: ${{ secrets.SQL_SERVER }}
-
           SQL_USER: ${{ secrets.SQL_USER }}
-
           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
-
         run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "SELECT 1 AS connection_test;" -b -o test_output.log
+          cat test_output.log
 
-          sqlcmd -S "%SQL_SERVER%" -U "%SQL_USER%" -P "%SQL_PASSWORD%" -Q "SELECT 1 AS connection_test;" -b -o test_output.log
-
-          type test_output.log
- 
       - name: Run SQL Script
-
-        shell: cmd
-
+        shell: bash
         env:
-
           SQL_SERVER: ${{ secrets.SQL_SERVER }}
-
           SQL_USER: ${{ secrets.SQL_USER }}
-
           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
-
         run: |
-
-          sqlcmd -S "%SQL_SERVER%" -U "%SQL_USER%" -P "%SQL_PASSWORD%" -i scripts/setup.sql -b -o sql_output.log 
-
-          type sql_output.log
- 
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -i scripts/setup.sql -b -o sql_output.log
+          cat sql_output.log
