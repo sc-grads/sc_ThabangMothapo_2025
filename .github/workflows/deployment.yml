@@ -1,0 +1,135 @@
+name: Setup SQL Server Database
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Development Environment (Local Machine)
+  deploy-dev:
+    runs-on: ubuntu-latest  # Changed to Ubuntu runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Microsoft SQL Server Tools (sqlcmd) on Ubuntu
+        run: |
+          # Add Microsoft's repository for SQL Server tools
+          sudo apt-get update
+          sudo apt-get install -y curl apt-transport-https gnupg
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          
+          # Install mssql-tools (includes sqlcmd)
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
+          
+          # Add sqlcmd to PATH
+          echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
+
+      - name: Verify SQLCMD installation
+        shell: bash
+        run: sqlcmd -?
+
+      - name: Debug print variables
+        shell: bash
+        run: |
+          echo "SQL_SERVER: $SQL_SERVER"
+          echo "SQL_USER: $SQL_USER"
+          echo "SQL_PASSWORD: ***"
+
+      - name: Test SQL Server connection (Dev)
+        shell: bash
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER_DEV }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "SELECT 1 AS connection_test;" -b -o test_output.log
+          cat test_output.log
+
+      - name: Run SQL Script (Dev)
+        shell: bash
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER_DEV }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -i scripts/setup.sql -b -o sql_output.log
+          cat sql_output.log
+
+      - name: Verify Database and Table (Dev)
+        shell: bash
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER_DEV }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "USE AutoDBThabang; SELECT * FROM [user];" -b -o verify_output.log
+          cat verify_output.log
+
+  # Production Environment (Accountability Partner’s Machine)
+  deploy-prod:
+    runs-on: ubuntu-latest  # Changed to Ubuntu runner
+    needs: deploy-dev  # Wait for dev deployment to complete
+    environment: production  # Define a production environment for approval
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Microsoft SQL Server Tools (sqlcmd) on Ubuntu
+        run: |
+          # Add Microsoft's repository for SQL Server tools
+          sudo apt-get update
+          sudo apt-get install -y curl apt-transport-https gnupg
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          
+          # Install mssql-tools (includes sqlcmd)
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
+          
+          # Add sqlcmd to PATH
+          echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
+
+      - name: Verify SQLCMD installation
+        shell: bash
+        run: sqlcmd -?
+
+      - name: Debug print variables
+        shell: bash
+        run: |
+          echo "SQL_SERVER: $SQL_SERVER"
+          echo "SQL_USER: $SQL_USER"
+          echo "SQL_PASSWORD: ***"
+
+      - name: Test SQL Server connection (Prod)
+        shell: bash
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER_PROD }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "SELECT 1 AS connection_test;" -b -o test_output.log
+          cat test_output.log
+
+      - name: Run SQL Script (Prod)
+        shell: bash
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER_PROD }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -i scripts/setup.sql -b -o sql_output.log
+          cat sql_output.log
+
+      - name: Verify Database and Table (Prod)
+        shell: bash
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER_PROD }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "USE AutoDBThabang; SELECT * FROM [user];" -b -o verify_output.log
+          cat verify_output.log
