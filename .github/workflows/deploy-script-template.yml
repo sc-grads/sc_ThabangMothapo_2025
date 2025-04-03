@@ -39,7 +39,7 @@ jobs:
           SQL_PASSWORD: ${{ secrets.sql_password }}
         run: |
           echo "Running SQL script on $SQL_SERVER:$SQL_PORT..."
-          /opt/mssql-tools/bin/sqlcmd -S "$SQL_SERVER,$SQL_PORT" -U "$SQL_USER" -P "$SQL_PASSWORD" -i scripts/setup1.sql -o output.log -x
+          /opt/mssql-tools/bin/sqlcmd -S "$SQL_SERVER,$SQL_PORT" -U "$SQL_USER" -P "$SQL_PASSWORD" -i SQL_Script/setup1.sql -o output.log -x
           EXIT_CODE=$?
           if [ $EXIT_CODE -ne 0 ]; then
             echo "Error: sqlcmd failed with exit code $EXIT_CODE"
