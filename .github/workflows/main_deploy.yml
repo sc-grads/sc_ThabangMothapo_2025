@@ -8,7 +8,7 @@ on:
  
 jobs:
   deploy-dev:
-    uses: ./.github/workflows/deploy-template.yml
+    uses: ./.github/workflows/deploy_sql_template.yml
     with:
       environment: development
     secrets:
@@ -20,7 +20,7 @@ jobs:
   deploy-prod:
     needs: deploy-dev
     if: success()
-    uses: ./.github/workflows/deploy-template.yml
+    uses: ./.github/workflows/deploy_sql_template.yml
     with:
       environment: production
     secrets:
