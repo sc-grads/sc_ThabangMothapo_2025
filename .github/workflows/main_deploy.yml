@@ -1,11 +1,11 @@
 name: Setup AutoDBThabang Database
- 
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
- 
+
 jobs:
   deploy-dev:
     uses: ./.github/workflows/deploy_sql_template.yml
@@ -16,7 +16,7 @@ jobs:
       SQL_SERVER_PORT: ${{ secrets.DEV_SQL_SERVER_PORT }}
       SQL_USER: Auto_user
       SQL_PASSWORD: ${{ secrets.DEV_SQL_PASSWORD }}
- 
+
   deploy-prod:
     needs: deploy-dev
     if: success()
