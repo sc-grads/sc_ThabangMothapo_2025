@@ -1,25 +1,30 @@
-name: Main Deployment Workflow
-
+name: Setup AutoDBThabang Database
+ 
 on:
   push:
     branches:
       - main
-
+  workflow_dispatch:
+ 
 jobs:
   deploy-dev:
-    name: Deploy to Development
-    uses: ./.github/workflows/deploy-sql-template.yml
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      environment: development
     secrets:
-      sql_server_host: ${{ secrets.DEV_SQL_SERVER_HOST }}
-      sql_server_port: ${{ secrets.DEV_SQL_SERVER_PORT }}
-      sql_password: ${{ secrets.DEV_SQL_PASSWORD }}
-
+      SQL_SERVER_HOST: ${{ secrets.DEV_SQL_SERVER_HOST }}
+      SQL_SERVER_PORT: ${{ secrets.DEV_SQL_SERVER_PORT }}
+      SQL_USER: Auto_user
+      SQL_PASSWORD: ${{ secrets.DEV_SQL_PASSWORD }}
+ 
   deploy-prod:
-    name: Deploy to Production
     needs: deploy-dev
-    environment: production
-    uses: ./.github/workflows/deploy-sql-template.yml
-     secrets:
-      sql_server_host: ${{ secrets.PROD_SQL_SERVER_HOST }}
-      sql_server_port: ${{ secrets.PROD_SQL_SERVER_PORT }}
-      sql_password: ${{ secrets.PROD_SQL_PASSWORD }}
+    if: success()
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      environment: production
+    secrets:
+      SQL_SERVER_HOST: ${{ secrets.PROD_SQL_SERVER_HOST }}
+      SQL_SERVER_PORT: ${{ secrets.PROD_SQL_SERVER_PORT }}
+      SQL_USER: Auto_user
+      SQL_PASSWORD: ${{ secrets.PROD_SQL_PASSWORD }}
