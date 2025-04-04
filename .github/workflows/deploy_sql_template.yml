@@ -1,69 +1,102 @@
-name: Deploy SQL Template
+name: Deploying
 
 on:
+
   workflow_call:
+
     inputs:
+
       environment:
-        description: 'Target environment (e.g., development, production)'
+
+        description: 'The environment (development or production)'
+
         required: true
+
         type: string
-      sql_script_path:
-        description: 'Path to the SQL script in the repository'
-        required: true
-        type: string
+
     secrets:
-      SQL_SERVER:
-        description: 'SQL Server host and port'
+
+      SQL_SERVER_HOST:
+
+        description: 'SQL Server hostname'
+
         required: true
+
+      SQL_SERVER_PORT:
+
+        description: 'SQL Server port'
+
+        required: true
+
       SQL_USER:
+
         description: 'SQL Server username'
+
         required: true
+
       SQL_PASSWORD:
+
         description: 'SQL Server password'
+
         required: true
 
 jobs:
+
   deploy:
+
+    name: Deploy to ${{ inputs.environment }}
+
     runs-on: ubuntu-latest
-    env:
-      SQL_SERVER: ${{ secrets.SQL_SERVER }}
-      SQL_USER: ${{ secrets.SQL_USER }}
-      SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+
+    environment: ${{ inputs.environment }}
+
     steps:
-      - name: Checkout code
+
+      - name: Checkout Repository
+
         uses: actions/checkout@v3
 
-      - name: Install Microsoft SQL Server Tools (sqlcmd) on Ubuntu
+      - name: Install SQL Server Tools
+
         run: |
+
           sudo apt-get update
-          sudo apt-get install -y curl apt-transport-https gnupg
+
+          sudo apt-get install -y curl gnupg
+
           curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-          curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+
+          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+
           sudo apt-get update
-          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
-          echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
 
-      - name: Verify SQLCMD installation
-        run: sqlcmd -?
+          sudo apt-get install -y mssql-tools unixodbc-dev
 
-      - name: Debug print variables
+          echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+
+          source ~/.bashrc
+
+      - name: Execute SQL Script
+
         run: |
-          echo "Environment: ${{ inputs.environment }}"
-          echo "SQL_SERVER: $SQL_SERVER"
-          echo "SQL_USER: $SQL_USER"
-          echo "SQL_PASSWORD: ***"
 
-      - name: Test SQL Server connection
-        run: |
-          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "SELECT 1 AS connection_test;" -b -o test_output.log
-          cat test_output.log
+          # Step 1: Run the script against master to create the database
 
-      - name: Run SQL Script
-        run: |
-          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -i ${{ inputs.sql_script_path }} -b -o sql_output.log
-          cat sql_output.log
+          /opt/mssql-tools/bin/sqlcmd -S "${{ secrets.SQL_SERVER_HOST }},${{ secrets.SQL_SERVER_PORT }}" -U "${{ secrets.SQL_USER }}" -P "${{ secrets.SQL_PASSWORD }}" -d master -i SQL_Script/setup1.sql -o output.log -x
 
-      - name: Verify Database and Table
-        run: |
-          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "USE AutoDBThabang; SELECT * FROM [user];" -b -o verify_output.log
-          cat verify_output.log
+          if grep -q "Msg [0-9]\+, Level [0-9]\+, State [0-9]\+" output.log; then
+
+            echo "Error: SQL script execution failed. Check output.log for details."
+
+            cat output.log
+
+            exit 1
+
+          else
+
+            echo "SQL script executed successfully."
+
+            cat output.log
+
+          fi
+ 
