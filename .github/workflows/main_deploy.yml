@@ -15,18 +15,18 @@ jobs:
     secrets:
       SQL_SERVER_HOST: ${{ secrets.DEV_SQL_SERVER_HOST }}
       SQL_SERVER_PORT: ${{ secrets.DEV_SQL_SERVER_PORT }}
-      SQL_USER: ${{ secrets.DEV_SQL_USER }} # Ensure this secret exists
+      SQL_USER: ${{ secrets.DEV_SQL_USER }}
       SQL_PASSWORD: ${{ secrets.DEV_SQL_PASSWORD }}
 
   deploy-prod:
     name: Deploy to Production
     needs: deploy-dev
-    if: success() # Only run if development deployment succeeds
+    if: success()
     uses: ./.github/workflows/deploy_sql_template.yml
     with:
       environment: production
     secrets:
       SQL_SERVER_HOST: ${{ secrets.PROD_SQL_SERVER_HOST }}
       SQL_SERVER_PORT: ${{ secrets.PROD_SQL_SERVER_PORT }}
-      SQL_USER: ${{ secrets.PROD_SQL_USER }} # Ensure this secret exists
+      SQL_USER: ${{ secrets.PROD_SQL_USER }}
       SQL_PASSWORD: ${{ secrets.PROD_SQL_PASSWORD }}
