@@ -1,32 +1,30 @@
-name: Setup AutoDBThabang Database
+name: Setup SQL Server Database
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   deploy-dev:
-    name: Deploy to Development
     uses: ./.github/workflows/deploy_sql_template.yml
     with:
       environment: development
+      sql_script_path: scripts/setup.sql
     secrets:
-      SQL_SERVER_HOST: ${{ secrets.DEV_SQL_SERVER_HOST }}
-      SQL_SERVER_PORT: ${{ secrets.DEV_SQL_SERVER_PORT }}
-      SQL_USER: ${{ secrets.DEV_SQL_USER }}
-      SQL_PASSWORD: ${{ secrets.DEV_SQL_PASSWORD }}
+      SQL_SERVER: ${{ secrets.SQL_SERVER_DEV }}
+      SQL_USER: ${{ secrets.SQL_USER }}
+      SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
 
   deploy-prod:
-    name: Deploy to Production
-    needs: deploy-dev
-    if: success()
+    needs: deploy-dev  # Ensures production runs after development
+    if: success()      # Only runs if deploy-dev succeeds
     uses: ./.github/workflows/deploy_sql_template.yml
     with:
       environment: production
+      sql_script_path: scripts/setup.sql
     secrets:
-      SQL_SERVER_HOST: ${{ secrets.PROD_SQL_SERVER_HOST }}
-      SQL_SERVER_PORT: ${{ secrets.PROD_SQL_SERVER_PORT }}
-      SQL_USER: ${{ secrets.PROD_SQL_USER }}
-      SQL_PASSWORD: ${{ secrets.PROD_SQL_PASSWORD }}
+      SQL_SERVER: ${{ secrets.SQL_SERVER_PROD }}
+      SQL_USER: ${{ secrets.SQL_USER }}
+      SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
