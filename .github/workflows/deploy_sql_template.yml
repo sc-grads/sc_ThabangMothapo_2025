@@ -4,46 +4,66 @@ on:
   workflow_call:
     inputs:
       environment:
+        description: 'Target environment (e.g., development, production)'
         required: true
+        type: string
+      sql_script_path:
+        description: 'Path to the SQL script in the repository'
+        required: true
+        type: string
     secrets:
-      SQL_SERVER_HOST:
-        required: true
-      SQL_SERVER_PORT:
+      SQL_SERVER:
+        description: 'SQL Server host and port'
         required: true
       SQL_USER:
+        description: 'SQL Server username'
         required: true
       SQL_PASSWORD:
+        description: 'SQL Server password'
         required: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SQL_SERVER: ${{ secrets.SQL_SERVER }}
+      SQL_USER: ${{ secrets.SQL_USER }}
+      SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Update package list
-        run: sudo apt-get update
-
-      - name: Install prerequisites
+      - name: Install Microsoft SQL Server Tools (sqlcmd) on Ubuntu
         run: |
-          sudo apt-get install -y curl gnupg
-
-      - name: Add Microsoft repository
-        run: |
-          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
           sudo apt-get update
+          sudo apt-get install -y curl apt-transport-https gnupg
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
+          echo "/opt/mssql-tools/bin" >> $GITHUB_PATH
 
-      - name: Resolve ODBC package conflicts
-        run: |
-          sudo apt-get remove -y libodbc2 libodbcinst2 unixodbc-common
-          sudo apt-get install -y mssql-tools unixodbc unixodbc-dev
+      - name: Verify SQLCMD installation
+        run: sqlcmd -?
 
-      - name: Deploy database
+      - name: Debug print variables
         run: |
-          # Example deployment command using mssql-tools
-          /opt/mssql-tools/bin/sqlcmd -S ${{ secrets.SQL_SERVER_HOST }},${{ secrets.SQL_SERVER_PORT }} \
-            -U ${{ secrets.SQL_USER }} \
-            -P ${{ secrets.SQL_PASSWORD }} \
-            -Q "CREATE DATABASE AutoDBThabang"
+          echo "Environment: ${{ inputs.environment }}"
+          echo "SQL_SERVER: $SQL_SERVER"
+          echo "SQL_USER: $SQL_USER"
+          echo "SQL_PASSWORD: ***"
+
+      - name: Test SQL Server connection
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "SELECT 1 AS connection_test;" -b -o test_output.log
+          cat test_output.log
+
+      - name: Run SQL Script
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -i ${{ inputs.sql_script_path }} -b -o sql_output.log
+          cat sql_output.log
+
+      - name: Verify Database and Table
+        run: |
+          sqlcmd -S "$SQL_SERVER" -U "$SQL_USER" -P "$SQL_PASSWORD" -Q "USE AutoDBThabang; SELECT * FROM [user];" -b -o verify_output.log
+          cat verify_output.log
