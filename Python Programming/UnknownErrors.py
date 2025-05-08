@@ -4,6 +4,8 @@ while True:
     try:
         number: float = float(user_input)
         print(f'You entered: {number}')
+    except ValueError:
+        print(f'The value you entered("{user_input}") is not a number.')
     except Exception as e:
         print('Program encountered an error')
         print(f'Type {type(e)}')
