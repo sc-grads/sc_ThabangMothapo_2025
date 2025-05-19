@@ -1,0 +1,2 @@
+INSERT INTO tblSecond
+VALUES(345), (567), (890)
