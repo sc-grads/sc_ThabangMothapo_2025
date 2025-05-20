@@ -1,0 +1,8 @@
+DECLARE @value AS SMALLINT= 20000
+SELECT @value AS MyValue
+
+DECLARE @value1 AS INT= 200000
+SELECT @value1 AS MyValue
+
+
+

@@ -1,0 +1,23 @@
+DECLARE @myvar AS NUMERIC(7,2) = 3
+
+SELECT POWER (@myvar,3)
+SELECT SQUARE(@myvar)
+SELECT SQRT(@myvar)
+
+DECLARE @myvar1 AS NUMERIC(7,2) = 12.34
+
+SELECT FLOOR (@myvar1) AS myFloor
+SELECT CEILING (@myvar1) AS myCeiling
+SELECT ROUND (@myvar1,0) AS myRound
+
+SELECT PI() AS myPI
+SELECT EXP(1) AS e
+
+SELECT ABS(456) AS myABS, SIGN(456) AS mySIGN
+
+
+DECLARE @myvar11 AS NUMERIC(7,2) = -12.34
+SELECT ABS(@myvar11) AS myABS, SIGN(@myvar11) AS mySIGN
+
+SELECT RAND(900)
+
