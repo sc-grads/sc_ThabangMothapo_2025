@@ -29,9 +29,9 @@ CREATE TABLE Timesheet (
     Description NVARCHAR(500),
     BillingStatus NVARCHAR(20),
     Comments NVARCHAR(1000),
-    TotalHours DECIMAL(10,4),
-    StartTime DECIMAL(10,4),
-    EndTime DECIMAL(10,4),
+    TotalHours Datetime,
+    StartTime Datetime,
+    EndTime Datetime,
     FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID),
     FOREIGN KEY (ClientID) REFERENCES Client(ClientID),
     FOREIGN KEY (ProjectID) REFERENCES Project(ProjectID)
