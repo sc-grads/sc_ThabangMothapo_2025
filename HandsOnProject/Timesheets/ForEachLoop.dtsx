@@ -1,0 +1,1330 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/5/2025 8:26:59 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SAMBE202519"
+  DTS:CreatorName="SAMBE202519\Thabang Mothapo"
+  DTS:DTSID="{D5162498-F300-49FB-85D9-E6538820700E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="7177"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="73"
+  DTS:VersionGUID="{E4259565-5AFD-40A7-A9AC-2AE01E33F96E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Data Connection]"
+      DTS:CreationName="ADO.NET:OLEDB"
+      DTS:DTSID="{77770E0A-834E-4D79-A40E-89E38330383B}"
+      DTS:ObjectName="Data Connection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Initial Catalog=TimesheetsDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Data Connection 1]"
+      DTS:CreationName="ADO.NET:OLEDB"
+      DTS:DTSID="{E730E559-5516-4371-B82C-03663008AAAB}"
+      DTS:ObjectName="Data Connection 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Initial Catalog=TimesheetsDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{468F4287-3480-4593-8928-C53311BD16F4}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Thabang Mothapo\Documents\Thabang Mothapo April_Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{373B832C-168A-4834-A8CD-3D40ED7752F2}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Thabang Mothapo\Documents\Thabang Mothapo April_Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{79DD123B-C700-40A7-AE58-573E4F5A8720}"
+      DTS:ObjectName="Excel Connection Manager 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Thabang Mothapo April_Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C2BEE79F-5074-4A63-8676-C2F5231B85D9}"
+      DTS:ObjectName="Excel Connection Manager 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Thabang Mothapo May-Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 4]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{78117FB7-4F81-4A0E-9221-C7EB7D6CBA8D}"
+      DTS:ObjectName="Excel Connection Manager 4">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Thabang Mothapo April_Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{9E33E42F-7E45-4538-ABEE-621F781BA50B}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="7177"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Error.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Type of Leave"
+              DTS:DTSID="{318BAD57-01C2-425C-98BE-BDA65FBFF0AB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Start Date"
+              DTS:DTSID="{86C2A9EA-5C65-4451-9E28-557628CA8568}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="End Date"
+              DTS:DTSID="{AEBE49E4-B963-4586-8E8D-FA448DF6D85B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="5"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Number of days "
+              DTS:DTSID="{F0945E8D-A125-4BB8-B47E-4201852A031E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Approval Obtained"
+              DTS:DTSID="{30CA41BF-4F54-4E16-B8FA-F3B0F114769B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Sick Note"
+              DTS:DTSID="{6A557254-8C23-459B-89C2-52107C42BA46}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Copy of Type of Leave"
+              DTS:DTSID="{8B13AC22-7BA9-47F6-98B2-B386E961965B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="133"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Copy of Start Date"
+              DTS:DTSID="{76EF0D44-770D-42A3-8EC8-02F705B376C2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="133"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Copy of End Date"
+              DTS:DTSID="{4D6C543F-8E0B-409F-9E13-E9F503DDD34B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Copy of Number of days"
+              DTS:DTSID="{98D60107-7134-450F-8BB7-3F9A8484F3F3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Copy of Approval Obtained"
+              DTS:DTSID="{01D02E70-F75A-494C-866C-4CF3E5984647}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Copy of Sick Note"
+              DTS:DTSID="{9D3E4514-1FD1-4DCB-9B06-55CF32158CA2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{3B0C7569-5066-4A46-8022-363ADF95C8B3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{9923D673-3D1B-4938-916A-1F88F27EEB5E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AF936BA8-1512-425F-8052-C0065EC09C9C}"
+      DTS:ObjectName="LocalHost.TimesheetDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{AF936BA8-1512-425F-8052-C0065EC09C9C}LocalHost.TimesheetDB;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B998550B-0019-42B1-80D9-26007412AC5F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExcelConnection">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB383AB3-D72A-4C73-AAF0-8D5124156C5B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SheetName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{90B57428-760B-441A-92E9-7A0E8FD08ACC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Leave"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3CA11E39-22E6-4235-9431-4F950B524E22}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Leave"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Leave\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leave\Conditional Split.Inputs[Conditional Split Input].Columns[Type of Leave]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Type of Leave"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Type of Leave]" />
+                    <inputColumn
+                      refId="Package\Leave\Conditional Split.Inputs[Conditional Split Input].Columns[Start Date]"
+                      cachedDataType="date"
+                      cachedName="Start Date"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Start Date]" />
+                    <inputColumn
+                      refId="Package\Leave\Conditional Split.Inputs[Conditional Split Input].Columns[End Date]"
+                      cachedDataType="date"
+                      cachedName="End Date"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[End Date]" />
+                    <inputColumn
+                      refId="Package\Leave\Conditional Split.Inputs[Conditional Split Input].Columns[Number of days ]"
+                      cachedDataType="r8"
+                      cachedName="Number of days "
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]" />
+                    <inputColumn
+                      refId="Package\Leave\Conditional Split.Inputs[Conditional Split Input].Columns[Approval Obtained]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Approval Obtained"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Approval Obtained]" />
+                    <inputColumn
+                      refId="Package\Leave\Conditional Split.Inputs[Conditional Split Input].Columns[Sick Note]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sick Note"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Case 1]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 1"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Type of Leave]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([Type of Leave])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Case 2]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 2"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Start Date]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([Start Date])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Case 3]"
+                  description="Output 3 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 3"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[End Date]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([End Date])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">2</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Case 4]"
+                  description="Output 4 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 4"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([Number of days ])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">3</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Case 5]"
+                  description="Output 5 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 5"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Approval Obtained]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([Approval Obtained])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">4</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Case 6]"
+                  description="Output 6 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 6"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([Sick Note])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">5</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leave\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leave\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leave\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leave\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leave\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Leave\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leave\Data Conversion.Inputs[Data Conversion Input].Columns[Type of Leave]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Type of Leave"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Type of Leave]" />
+                    <inputColumn
+                      refId="Package\Leave\Data Conversion.Inputs[Data Conversion Input].Columns[Start Date]"
+                      cachedDataType="date"
+                      cachedName="Start Date"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Start Date]" />
+                    <inputColumn
+                      refId="Package\Leave\Data Conversion.Inputs[Data Conversion Input].Columns[End Date]"
+                      cachedDataType="date"
+                      cachedName="End Date"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[End Date]" />
+                    <inputColumn
+                      refId="Package\Leave\Data Conversion.Inputs[Data Conversion Input].Columns[Number of days ]"
+                      cachedDataType="r8"
+                      cachedName="Number of days "
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]" />
+                    <inputColumn
+                      refId="Package\Leave\Data Conversion.Inputs[Data Conversion Input].Columns[Approval Obtained]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Approval Obtained"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Approval Obtained]" />
+                    <inputColumn
+                      refId="Package\Leave\Data Conversion.Inputs[Data Conversion Input].Columns[Sick Note]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sick Note"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leave\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Leave\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Type of Leave]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Type of Leave]"
+                      name="Copy of Type of Leave"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Type of Leave]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Date]"
+                      name="Copy of Start Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Start Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Date]"
+                      name="Copy of End Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[End Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]"
+                      name="Copy of Number of days"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Approval Obtained]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Approval Obtained]"
+                      name="Copy of Approval Obtained"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Approval Obtained]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Sick Note]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Sick Note]"
+                      name="Copy of Sick Note"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Leave\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Leave\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leave\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leave\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Leave$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [Leave$A10:F]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Leave\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Leave\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Type of Leave]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Type of Leave]"
+                      length="255"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Type of Leave]"
+                      name="Type of Leave"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Start Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Start Date]"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Start Date]"
+                      name="Start Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[End Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[End Date]"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[End Date]"
+                      name="End Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Number of days ]"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]"
+                      name="Number of days "
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Approval Obtained]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Approval Obtained]"
+                      length="255"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Approval Obtained]"
+                      name="Approval Obtained"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sick Note]"
+                      length="255"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]"
+                      name="Sick Note"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Type of Leave]"
+                      dataType="wstr"
+                      length="255"
+                      name="Type of Leave" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Start Date]"
+                      dataType="date"
+                      name="Start Date" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[End Date]"
+                      dataType="date"
+                      name="End Date" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Number of days ]"
+                      dataType="r8"
+                      name="Number of days " />
+                    <externalMetadataColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Approval Obtained]"
+                      dataType="wstr"
+                      length="255"
+                      name="Approval Obtained" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sick Note]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sick Note" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Type of Leave]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Type of Leave]"
+                      name="Type of Leave" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Start Date]"
+                      dataType="date"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Start Date]"
+                      name="Start Date" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[End Date]"
+                      dataType="date"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[End Date]"
+                      name="End Date" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Number of days ]"
+                      dataType="r8"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Number of days ]"
+                      name="Number of days " />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Approval Obtained]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Approval Obtained]"
+                      name="Approval Obtained" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Sick Note]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[Sick Note]"
+                      name="Sick Note" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leave\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Leave\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Leave]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Leave\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.TimesheetDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Type of Leave]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of Type of Leave"
+                      externalMetadataColumnId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeaveType]"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Type of Leave]" />
+                    <inputColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Start Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Copy of Start Date"
+                      externalMetadataColumnId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Start Date]" />
+                    <inputColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of End Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Copy of End Date"
+                      externalMetadataColumnId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndDate]"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Date]" />
+                    <inputColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Number of days]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Number of days"
+                      externalMetadataColumnId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberOfDays]"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]" />
+                    <inputColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Approval Obtained]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of Approval Obtained"
+                      externalMetadataColumnId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApprovalObtained]"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Approval Obtained]" />
+                    <inputColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Sick Note]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of Sick Note"
+                      externalMetadataColumnId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SickNote]"
+                      lineageId="Package\Leave\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Sick Note]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeaveID]"
+                      dataType="i4"
+                      name="LeaveID" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
+                      dataType="i4"
+                      name="ConsultantID" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeaveType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="LeaveType" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
+                      dataType="dbDate"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndDate]"
+                      dataType="dbDate"
+                      name="EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberOfDays]"
+                      dataType="i4"
+                      name="NumberOfDays" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApprovalObtained]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ApprovalObtained" />
+                    <externalMetadataColumn
+                      refId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SickNote]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SickNote" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Leave\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Leave\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Leave\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Leave\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Leave\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Leave.Paths[Conditional Split Default Output]"
+              endId="Package\Leave\Data Conversion.Inputs[Data Conversion Input]"
+              name="Conditional Split Default Output"
+              startId="Package\Leave\Conditional Split.Outputs[Conditional Split Default Output]" />
+            <path
+              refId="Package\Leave.Paths[Data Conversion Output]"
+              endId="Package\Leave\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Leave\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Leave.Paths[Excel Source Output]"
+              endId="Package\Leave\Conditional Split.Inputs[Conditional Split Input]"
+              name="Excel Source Output"
+              startId="Package\Leave\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="106.4,41.6"
+          Id="Package\Leave"
+          TopLeft="78.8333309657045,64.9666664617592" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Leave">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\Leave\Excel Source"
+          TopLeft="38.8333315120804,9.83333330319988" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Leave\OLE DB Destination"
+          TopLeft="29.6666669853859,220.099998716315" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Leave\Data Conversion"
+          TopLeft="16.3333327414261,90.4333327427176" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Leave\Conditional Split"
+          TopLeft="249.799989209076,89.2333329596784" />
+        <EdgeLayout
+          Id="Package\Leave.Paths[Data Conversion Output]"
+          TopLeft="94.3333327414261,132.033332742718">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.9333342439598,88.0666659735974"
+              Start="0,0"
+              End="20.9333342439598,80.5666659735974">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.0333329867987" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.0333329867987"
+                    Point2="0,44.0333329867987"
+                    Point3="4,44.0333329867987" />
+                  <mssgle:LineSegment
+                    End="16.9333342439598,44.0333329867987" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.9333342439598,44.0333329867987"
+                    Point2="20.9333342439598,44.0333329867987"
+                    Point3="20.9333342439598,48.0333329867987" />
+                  <mssgle:LineSegment
+                    End="20.9333342439598,80.5666659735974" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.4666671219799,49.0333329867987,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Leave.Paths[Conditional Split Default Output]"
+          TopLeft="249.799989209076,110.633332851198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77.4666564676502,0"
+              Start="0,0"
+              End="-69.9666564676502,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-69.9666564676502,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-114.258367296325,5,158.550078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Leave.Paths[Excel Source Output]"
+          TopLeft="108.83333151208,51.4333333031999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="217.766657696996,37.7999996564785"
+              Start="0,0"
+              End="217.766657696996,30.2999996564785">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.8999998282393" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.8999998282393"
+                    Point2="0,18.8999998282393"
+                    Point3="4,18.8999998282393" />
+                  <mssgle:LineSegment
+                    End="213.766657696996,18.8999998282393" />
+                  <mssgle:CubicBezierSegment
+                    Point1="213.766657696996,18.8999998282393"
+                    Point2="217.766657696996,18.8999998282393"
+                    Point3="217.766657696996,22.8999998282393" />
+                  <mssgle:LineSegment
+                    End="217.766657696996,30.2999996564785" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Leave\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Leave\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
