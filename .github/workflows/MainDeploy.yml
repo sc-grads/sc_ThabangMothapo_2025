@@ -32,5 +32,5 @@ jobs:
 
   call-ssis:
     needs: run-sql-jobs
-    uses: ./.github/workflows/run-ssis.yml
+    uses: ./.github/workflows/SSIS.yml
     secrets: inherit
