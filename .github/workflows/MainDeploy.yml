@@ -1,0 +1,36 @@
+name: Deploy SQL DB and Call SSIS Workflow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-database:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install sqlcmd
+        run: |
+          choco install sqlcmd --no-progress
+
+      - name: Run SQL script to deploy DB and tables
+        run: |
+          sqlcmd -S ${{ secrets.SQL_SERVER }} -U ${{ secrets.SQL_USER }} -P ${{ secrets.SQL_PASSWORD }} -i sql/create_tables.sql
+
+  run-sql-jobs:
+    needs: deploy-database
+    runs-on: windows-latest
+
+    steps:
+      - name: Run SQL Server Jobs
+        run: |
+          powershell.exe -ExecutionPolicy Bypass -File scripts/run_sql_jobs.ps1
+
+  call-ssis:
+    needs: run-sql-jobs
+    uses: ./.github/workflows/run-ssis.yml
+    secrets: inherit
