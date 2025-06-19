@@ -8,7 +8,8 @@ on:
 jobs:
   deploy-database:
     runs-on: self-hosted
-
+    timeout-minutes: 10
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,6 +21,7 @@ jobs:
       - name: Run SQL script to deploy DB and tables
         run: |
           sqlcmd -S ${{ secrets.SQL_SERVER }} -U ${{ secrets.SQL_USER }} -P ${{ secrets.SQL_PASSWORD }} -i SQL_Script/SQL.sql
+          timeout-minutes: 2
 
   run-sql-jobs:
     needs: deploy-database
@@ -29,6 +31,7 @@ jobs:
       - name: Run SQL Server Jobs
         run: |
           powershell.exe -ExecutionPolicy Bypass -File scripts/run_sql_jobs.ps1
+          exit 0v
 
   call-ssis:
     needs: run-sql-jobs
