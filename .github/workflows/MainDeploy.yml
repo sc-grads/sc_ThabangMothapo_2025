@@ -44,6 +44,6 @@ jobs:
 
   call-ssis:
     needs: run-sql-jobs
-    uses: ThabangMothapo/timesheet-system/.github/workflows/SSIS.yml@main  # Replace with your repo path
+    uses:  ./.github/workflows/SSIS.yml
     secrets: inherit
    
