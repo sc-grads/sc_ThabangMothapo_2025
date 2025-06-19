@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy-database:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -23,7 +23,7 @@ jobs:
 
   run-sql-jobs:
     needs: deploy-database
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
       - name: Run SQL Server Jobs
