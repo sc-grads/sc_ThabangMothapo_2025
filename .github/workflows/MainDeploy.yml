@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy-database:
-    runs-on: windows-latest
+    runs-on: windows-latest   # ✅ corrected from "window-latest"
 
     steps:
       - name: Checkout code
@@ -34,3 +34,5 @@ jobs:
     needs: run-sql-jobs
     uses: ./.github/workflows/SSIS.yml
     secrets: inherit
+    with:
+      runner: self-hosted  # 👈 specify the runner label (e.g. "self-hosted", or custom tag)
