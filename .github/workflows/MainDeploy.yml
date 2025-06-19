@@ -19,7 +19,7 @@ jobs:
 
       - name: Run SQL script to deploy DB and tables
         run: |
-          sqlcmd -S ${{ secrets.SQL_SERVER }} -U ${{ secrets.SQL_USER }} -P ${{ secrets.SQL_PASSWORD }} -i sql/create_tables.sql
+          sqlcmd -S ${{ secrets.SQL_SERVER }} -U ${{ secrets.SQL_USER }} -P ${{ secrets.SQL_PASSWORD }} -i SQL_Script/SQL.sql
 
   run-sql-jobs:
     needs: deploy-database
