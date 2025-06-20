@@ -1,0 +1,36 @@
+
+name: Deploy SSIS Package
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'SSISProject/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: [self-hosted, ssis-runner]  # Self-hosted runner with SSIS tools
+    environment: production
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup SSIS DevOps Tools (assumes tools are already installed or added via PATH)
+      - name: Setup SSIS DevOps Tools
+        uses: jonlabelle/setup-ssis-devops-tools@v1
+
+      # Step 3: Build SSIS Project
+      - name: Build SSIS Project
+        run: |
+          SSISBuild.exe -p:"${{ github.workspace }}\\SSISProject\\MySSISProject.dtproj" -o:"${{ github.workspace }}\\SSISBuild"
+        shell: cmd
+
+      # Step 4: Deploy SSIS package to SSISDB
+      - name: Deploy SSIS Package
+        run: |
+          SSISDeploy.exe -s:"${{ github.workspace }}\\SSISBuild\\MySSISProject.ispac" -d:"catalog;/SSISDB/MyFolder/MyProject;MyServerName" -at:winAuth
+        shell: cmd
