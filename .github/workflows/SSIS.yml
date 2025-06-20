@@ -1,0 +1,16 @@
+name: Run SSIS Packages
+
+on:
+  workflow_call:
+
+jobs:
+  ssis-run:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run SSIS Package
+        run: |
+          dtexec /f "ssis/timesheet_import.dtsx"

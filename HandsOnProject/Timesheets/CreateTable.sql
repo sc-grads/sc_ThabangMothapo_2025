@@ -1,6 +1,4 @@
-Create database Timesheet
-GO
-
+-- Create Consultants table
 CREATE TABLE Consultant (
     ConsultantID INT PRIMARY KEY IDENTITY(1,1),
     ConsultantName NVARCHAR(100) NOT NULL
@@ -12,6 +10,14 @@ CREATE TABLE Client (
     ClientName NVARCHAR(100) NOT NULL
 );
 
+-- Create Projects table
+CREATE TABLE Project (
+    ProjectID INT PRIMARY KEY IDENTITY(1,1),
+    ClientID INT NOT NULL,
+    ProjectName NVARCHAR(100),
+    FOREIGN KEY (ClientID) REFERENCES Client(ClientID)
+);
+
 -- Create Timesheets table
 CREATE TABLE Timesheet (
     TimesheetID INT PRIMARY KEY IDENTITY(1,1),
@@ -19,6 +25,7 @@ CREATE TABLE Timesheet (
     EntryDate DATE NOT NULL,
     DayOfWeek NVARCHAR(20),
     ClientID INT,
+    ProjectID INT,
     Description NVARCHAR(500),
     BillingStatus NVARCHAR(20),
     Comments NVARCHAR(1000),
@@ -27,8 +34,19 @@ CREATE TABLE Timesheet (
     EndTime DECIMAL(10,4),
     FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID),
     FOREIGN KEY (ClientID) REFERENCES Client(ClientID),
+    FOREIGN KEY (ProjectID) REFERENCES Project(ProjectID)
 );
 
+-- Create Expenses table
+CREATE TABLE Expense (
+    ExpenseID INT PRIMARY KEY IDENTITY(1,1),
+    ConsultantID INT NOT NULL,
+    ExpenseDate DATE NOT NULL,
+    ExpenseDescription NVARCHAR(200),
+    ExpenseType NVARCHAR(50),
+    ZARCost DECIMAL(10,2),
+    FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID)
+);
 
 -- Create Leaves table
 CREATE TABLE Leave (
@@ -42,20 +60,4 @@ CREATE TABLE Leave (
     SickNote NVARCHAR(10),
     FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID)
 );
-CREATE TABLE AuditLog (
-    AuditLogID INT PRIMARY KEY IDENTITY(1,1),
-    TableName NVARCHAR(100) NOT NULL,
-    Action NVARCHAR(10) NOT NULL,           -- e.g., INSERT, UPDATE, DELETE
-    RecordID INT NOT NULL,                  -- ID of the affected row
-    ChangedBy NVARCHAR(100) NOT NULL,       -- Username or consultant name
-    ChangeDate DATETIME DEFAULT GETDATE(),  -- Timestamp of the action
-    ChangeDetails NVARCHAR(MAX)             -- JSON or descriptive string of what changed
-);
-CREATE TABLE ErrorLog (
-    ErrorLogID INT PRIMARY KEY IDENTITY(1,1),
-    ErrorDate DATETIME DEFAULT GETDATE(),   -- When the error occurred
-    ErrorMessage NVARCHAR(MAX) NOT NULL,
-    TableName nvarchar(100) NOT NULL,
-    ConsultantID INT,                       -- Optional: related consultant, if applicable
-    FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID)
-);
+
