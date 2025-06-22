@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, ssis-runner]  # Self-hosted runner with SSIS tools
+    runs-on: self-hosted  # Self-hosted runner with SSIS tools
     environment: production
 
     steps:
