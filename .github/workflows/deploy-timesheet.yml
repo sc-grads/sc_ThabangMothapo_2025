@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Change to self-hosted if using a local runner
 
     steps:
       - name: Checkout repository
@@ -15,20 +15,34 @@ jobs:
 
       - name: Setup Microsoft SQL Server Tools
         run: |
-          # Install prerequisites
           sudo apt-get update
           sudo apt-get install -y curl apt-transport-https gnupg
-          # Add Microsoft repository GPG key non-interactively
           curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
-          # Add Microsoft repository for Ubuntu 24.04
           curl -fsSL https://packages.microsoft.com/config/ubuntu/24.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
-          # Update package lists
           sudo apt-get update
-          # Install mssql-tools18 and unixodbc-dev
           sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev
-          # Add mssql-tools to PATH
           echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
           source ~/.bashrc
+
+      - name: Debug Environment Variables
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER }}
+          SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
+          SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
+        run: |
+          echo "SQL_SERVER is set: ${SQL_SERVER:+set}"
+          echo "SQL_USERNAME is set: ${SQL_USERNAME:+set}"
+          echo "SQL_DATABASE is set: ${SQL_DATABASE:+set}"
+          echo "SQL_SERVER length: ${#SQL_SERVER}"
+          echo "SQL_USERNAME length: ${#SQL_USERNAME}"
+          echo "SQL_DATABASE length: ${#SQL_DATABASE}"
+          # Test network reachability
+          if [ -n "$SQL_SERVER" ]; then
+            host=$(echo "$SQL_SERVER" | cut -d'\' -f1)
+            ping -c 4 "$host" || echo "Ping to $host failed."
+            nc -zv "$host" 1433 || echo "Port 1433 unreachable on $host."
+            nc -zv -u "$host" 1434 || echo "Port 1434 (UDP) unreachable on $host."
+          fi
 
       - name: Test SQL Server Connection
         env:
@@ -37,9 +51,8 @@ jobs:
           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
           SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
         run: |
-          # Quote variables to handle special characters
-          /opt/mssql-tools18/bin/sqlcmd -S "$SQL_SERVER" -U "$SQL_USERNAME" -P "$SQL_PASSWORD" -d "$SQL_DATABASE" -N -C -t 60 -Q "SELECT @@VERSION;" || {
-            echo "Connection test failed. Check SQL Server secrets.";
+          /opt/mssql-tools18/bin/sqlcmd -S "$SQL_SERVER" -U "$SQL_USERNAME" -P "$SQL_PASSWORD" -d "$SQL_DATABASE" -N -C -t 60 -r1 -Q "SELECT @@VERSION;" || {
+            echo "Connection test failed. Check SQL Server secrets and network configuration.";
             exit 1;
           }
 
@@ -50,7 +63,6 @@ jobs:
           SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
           SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
         run: |
-          # Quote variables and add verbose output
           /opt/mssql-tools18/bin/sqlcmd -S "$SQL_SERVER" -U "$SQL_USERNAME" -P "$SQL_PASSWORD" -d "$SQL_DATABASE" -N -C -t 60 -r1 -i deploy_timesheet.sql || {
             echo "Deployment failed. Check error output above.";
             exit 1;
