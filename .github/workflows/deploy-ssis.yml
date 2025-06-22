@@ -10,31 +10,39 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted  # Must be a Windows runner with SSIS tools installed
+    runs-on: self-hosted  # Must be a Windows-based runner with SSIS tools installed
+    timeout-minutes: 20
     environment: production
 
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup SSIS DevOps Tools
-      - name: Setup SSIS DevOps Tools
-        uses: jonlabelle/setup-ssis-devops-tools@v1
+      # Step 2: Verify runner environment
+      - name: Check workspace and tools
+        shell: cmd
+        run: |
+          echo Workspace: ${{ github.workspace }}
+          where SSISBuild.exe
+          where SSISDeploy.exe
+          dir "%{{ github.workspace }}\SSISProject"
 
       # Step 3: Build SSIS Project
       - name: Build SSIS Project
         shell: cmd
         run: |
           SSISBuild.exe ^
-            -p:"${{ github.workspace }}\\SSISProject\\MySSISProject.dtproj" ^
-            -o:"${{ github.workspace }}\\SSISBuild"
+            -p:"${{ github.workspace }}\SSISProject\MySSISProject.dtproj" ^
+            -o:"${{ github.workspace }}\SSISBuild" ^
+            -v:detailed
 
-      # Step 4: Deploy SSIS package to SSISDB
+      # Step 4: Deploy SSIS Package to SSISDB
       - name: Deploy SSIS Package
         shell: cmd
         run: |
           SSISDeploy.exe ^
-            -s:"${{ github.workspace }}\\SSISBuild\\MySSISProject.ispac" ^
+            -s:"${{ github.workspace }}\SSISBuild\MySSISProject.ispac" ^
             -d:"catalog;/SSISDB/MyFolder/MyProject;MyServerName" ^
-            -at:winAuth
+            -at:winAuth ^
+            -v:detailed
