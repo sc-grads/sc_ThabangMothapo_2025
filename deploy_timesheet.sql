@@ -2,13 +2,13 @@
 USE master;
 GO
 
--- Drop the procedure if it exists to avoid Msg 2714
+-- Drop the procedure if it exists to avoid conflicts
 IF OBJECT_ID('DeployTimesheetDatabase', 'P') IS NOT NULL
     DROP PROCEDURE DeployTimesheetDatabase;
 GO
 
 -- Create the DeployTimesheetDatabase stored procedure
-CREATE PROCEDURE DeployTimesheetDBDatabase
+CREATE PROCEDURE DeployTimesheetDatabase
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -17,7 +17,7 @@ BEGIN
         -- Create Timesheet database if it doesn't exist
         IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'Timesheet')
         BEGIN
-            CREATE DATABASE TimesheetDB;
+            CREATE DATABASE Timesheet;
         END
 
         -- Use dynamic SQL to create tables in Timesheet database
@@ -48,25 +48,38 @@ BEGIN
         ';
         EXEC sp_executesql @SQL;
 
-        -- Log successful deployment
-        INSERT INTO Timesheet.AuditLog (EventType, EventDateTime, Details)
-        VALUES ('Database Deployment', GETDATE(), 'Timesheet database deployed successfully.');
+        -- Log successful deployment in Timesheet.dbo.AuditLog
+        SET @SQL = N'
+            INSERT INTO Timesheet.dbo.AuditLog (EventType, EventDateTime, Details)
+            VALUES (''Database Deployment'', GETDATE(), ''Timesheet database deployed successfully.'');
+        ';
+        EXEC sp_executesql @SQL;
     END TRY
     BEGIN CATCH
-        -- Log error
-        INSERT INTO Timesheet.ErrorLog (ErrorMessage, ErrorDateTime, StackTrace)
-        VALUES (
-            ERROR_MESSAGE(),
-            GETDATE(),
-            'Procedure: DeployTimesheetDatabase, Line: ' + CAST(ERROR_LINE() AS NVARCHAR(10))
-        );
+        -- Log error in Timesheet.dbo.ErrorLog using dynamic SQL
+        DECLARE @ErrorSQL NVARCHAR(MAX);
+        DECLARE @ErrorMsg NVARCHAR(500) = ERROR_MESSAGE();
+        DECLARE @StackTrace NVARCHAR(MAX) = 'Procedure: DeployTimesheetDatabase, Line: ' + CAST(ERROR_LINE() AS NVARCHAR(10));
+        SET @ErrorSQL = N'
+            INSERT INTO Timesheet.dbo.ErrorLog (ErrorMessage, ErrorDateTime, StackTrace)
+            VALUES (@ErrorMsg, GETDATE(), @StackTrace);
+        ';
+        BEGIN TRY
+            EXEC sp_executesql @ErrorSQL,
+                N'@ErrorMsg NVARCHAR(500), @StackTrace NVARCHAR(MAX)',
+                @ErrorMsg, @StackTrace;
+        END TRY
+        BEGIN CATCH
+            -- If error logging fails, print the error for debugging
+            PRINT 'Failed to log error to Timesheet.dbo.ErrorLog: ' + ERROR_MESSAGE();
+        END CATCH
 
-        -- Throw the error with proper syntax
-        THROW 50001, 'Failed to deploy Timesheet database. Check ErrorLog for details.', 1;
+        -- Raise the error (compatible with SQL Server 2008 and later)
+        RAISERROR ('Failed to deploy Timesheet database. Check Timesheet.dbo.ErrorLog for details.', 16, 1);
     END CATCH
 END;
 GO
 
 -- Execute the procedure
-EXEC DeployTimesheetDBDatabase;
+EXEC DeployTimesheetDatabase;
 GO
