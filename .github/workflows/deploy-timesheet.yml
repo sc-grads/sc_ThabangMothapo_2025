@@ -36,7 +36,10 @@ jobs:
           echo "SQL_SERVER length: ${#SQL_SERVER}"
           echo "SQL_USERNAME length: ${#SQL_USERNAME}"
           echo "SQL_DATABASE length: ${#SQL_DATABASE}"
-          # Test network reachability
+          if [ -z "$SQL_USERNAME" ]; then
+            echo "Error: SQL_USERNAME is empty. Please set it in GitHub Secrets."
+            exit 1
+          fi
           if [ -n "$SQL_SERVER" ]; then
             host=$(echo "$SQL_SERVER" | cut -d'\' -f1)
             ping -c 4 "$host" || echo "Ping to $host failed."
