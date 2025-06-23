@@ -12,7 +12,7 @@ obj/
 
 *.tmp
 
-*.param
+
 
 *.sln
 
@@ -35,7 +35,7 @@ obj/
 
 *.dtproj.user
 
-*.param
+
 
 *.sln
  
