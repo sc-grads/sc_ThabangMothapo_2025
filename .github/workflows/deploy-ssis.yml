@@ -9,15 +9,35 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Debug Workspace
+        run: |
+          dir /s HandsOnProject\Timesheets
+          dir /s *.dtproj
+        shell: cmd
       - name: Set up MSBuild
         uses: microsoft/setup-msbuild@v2
       - name: Build SSIS Project
         run: |
-          msbuild HandsOnProject/Timesheets/AutomatedTimesheetData.dtproj /t:Build /p:Configuration=Development
+          if exist HandsOnProject\Timesheets\AutomatedTimesheetData.dtproj (
+            msbuild HandsOnProject\Timesheets\AutomatedTimesheetData.dtproj /t:Build /p:Configuration=Development
+          ) else (
+            echo ERROR: Project file not found
+            exit /b 1
+          )
         shell: cmd
+      - name: Clean up SSIS Catalog
+        run: |
+          sqlcmd -S SAMBE202519 -E -Q "EXEC SSISDB.catalog.delete_project @folder_name = 'Timesheets', @project_name = 'AutomatedTimesheetData';"
+        shell: cmd
+        continue-on-error: true
       - name: Deploy SSIS Package to SSISDB
         run: |
-          sqlcmd -S SAMBE202519 -E -Q "DECLARE @ProjectBinary AS varbinary(max); SET @ProjectBinary = (SELECT * FROM OPENROWSET(BULK 'C:\Windows\System32\actions-runner\_work\sc_ThabangMothapo_2025\sc_ThabangMothapo_2025\HandsOnProject\Timesheets\bin\Development\AutomatedTimesheetData.ispac', SINGLE_BLOB) AS BinaryData); DECLARE @operation_id AS bigint; EXEC catalog.deploy_project @folder_name = 'Timesheets', @project_name = 'AutomatedTimesheetData', @Project_Stream = @ProjectBinary, @operation_id = @operation_id OUT;"
+          if exist HandsOnProject\Timesheets\bin\Development\AutomatedTimesheetData.ispac (
+            sqlcmd -S SAMBE202519 -E -Q "DECLARE @ProjectBinary AS varbinary(max); SET @ProjectBinary = (SELECT * FROM OPENROWSET(BULK 'C:\Windows\System32\actions-runner\_work\sc_ThabangMothapo_2025\sc_ThabangMothapo_2025\HandsOnProject\Timesheets\bin\Development\AutomatedTimesheetData.ispac', SINGLE_BLOB) AS BinaryData); DECLARE @operation_id AS bigint; EXEC catalog.deploy_project @folder_name = 'Timesheets', @project_name = 'AutomatedTimesheetData', @Project_Stream = @ProjectBinary, @operation_id = @operation_id OUT;"
+          ) else (
+            echo ERROR: .ispac file not found
+            exit /b 1
+          )
         shell: cmd
       - name: Verify Deployment
         run: |
