@@ -1,35 +1,25 @@
 name: Deploy SSIS Package
-
 on:
-  workflow_dispatch:
-
+  push:
+    branches:
+      - main
 jobs:
   deploy-ssis:
     runs-on: self-hosted
-    timeout-minutes: 30
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Debug ISPAC path
-        shell: powershell
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Build SSIS Project
         run: |
-          Write-Output "Workspace: $env:GITHUB_WORKSPACE"
-          dir "$env:GITHUB_WORKSPACE\HandsOnProjects\Timesheets\bin\Development"
-
-      - name: Deploy ISPAC using SSISDeploy.exe
+          msbuild HandsOnProject/Timesheets/AutomatedTimesheetData.dtproj /t:Build /p:Configuration=Development
         shell: cmd
+      - name: Deploy SSIS Package to SSISDB
         run: |
-          set "ISPAC_PATH=%GITHUB_WORKSPACE%\HandsOnProjects\Timesheets\bin\Development\Timesheets.ispac"
-          set "FOLDER=TimesheetsFolder"
-          set "PROJECT=Timesheets"
-          set "SERVER=localhost"
-          
-          echo Deploying %ISPAC_PATH% to %SERVER%\SSISDB\%FOLDER%\%PROJECT%
-          
-          SSISDeploy.exe ^
-            -s:"%ISPAC_PATH%" ^
-            -d:"catalog;/SSISDB/%FOLDER%/%PROJECT%;%SERVER%" ^
-            -at:winAuth ^
-            -v:detailed
+          sqlcmd -S SAMBE202519 -E -Q "DECLARE @ProjectBinary AS varbinary(max); SET @ProjectBinary = (SELECT * FROM OPENROWSET(BULK 'C:\Windows\System32\actions-runner\_work\sc_ThabangMothapo_2025\sc_ThabangMothapo_2025\HandsOnProject\Timesheets\bin\Development\AutomatedTimesheetData.ispac', SINGLE_BLOB) AS BinaryData); DECLARE @operation_id AS bigint; EXEC catalog.deploy_project @folder_name = 'Timesheets', @project_name = 'AutomatedTimesheetData', @Project_Stream = @ProjectBinary, @operation_id = @operation_id OUT;"
+        shell: cmd
+      - name: Verify Deployment
+        run: |
+          sqlcmd -S SAMBE202519 -E -Q "SELECT * FROM SSISDB.catalog.projects WHERE name = 'AutomatedTimesheetData';"
+        shell: cmd
