@@ -1,4 +1,4 @@
-name: Deploy SSIS Package 
+name: Deploy SSIS Package
 
 on:
   workflow_dispatch:
@@ -16,18 +16,18 @@ jobs:
         shell: powershell
         run: |
           Write-Output "Workspace: $env:GITHUB_WORKSPACE"
-          dir "$env:GITHUB_WORKSPACE\HandsOnProjects\Timesheets"
+          dir "$env:GITHUB_WORKSPACE\HandsOnProjects\Timesheets\bin\Development"
 
       - name: Deploy ISPAC using SSISDeploy.exe
         shell: cmd
         run: |
-          set ISPAC_PATH=%GITHUB_WORKSPACE%\HandsOnProjects\Timesheets
-          set FOLDER=TimesheetsFolder
-          set PROJECT=Timesheets
-          set SERVER=localhost
-
+          set "ISPAC_PATH=%GITHUB_WORKSPACE%\HandsOnProjects\Timesheets\bin\Development\Timesheets.ispac"
+          set "FOLDER=TimesheetsFolder"
+          set "PROJECT=Timesheets"
+          set "SERVER=localhost"
+          
           echo Deploying %ISPAC_PATH% to %SERVER%\SSISDB\%FOLDER%\%PROJECT%
-
+          
           SSISDeploy.exe ^
             -s:"%ISPAC_PATH%" ^
             -d:"catalog;/SSISDB/%FOLDER%/%PROJECT%;%SERVER%" ^
