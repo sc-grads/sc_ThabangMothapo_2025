@@ -12,8 +12,6 @@ obj/
 
 *.tmp
 
-*.param
-
 *.sln
 
 *.database
@@ -35,7 +33,7 @@ obj/
 
 *.dtproj.user
 
-*.param
+
 
 *.sln
  
