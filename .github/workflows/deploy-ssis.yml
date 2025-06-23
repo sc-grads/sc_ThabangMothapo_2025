@@ -1,4 +1,4 @@
-name: Deploy SSIS Package (Windows Auth)
+name: Deploy SSIS Package 
 
 on:
   workflow_dispatch:
