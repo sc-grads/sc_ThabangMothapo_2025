@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="AuditLog"
   DTS:PackageType="5"
-  DTS:VersionBuild="53"
-  DTS:VersionGUID="{CFE3FF03-2A23-496D-B33C-6CE9BEB8B695}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{0918F5EC-063A-491D-9B91-AD63AED66AE3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1572,10 +1572,10 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="204.8,186.4"
+          PanelSize="204.8,185.6"
           Size="204.8,228.8"
           Id="Package\Sequence Container"
-          TopLeft="17.4999990438422,163.799998860955" />
+          TopLeft="87.499995219211,66.7333328692778" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1585,13 +1585,17 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Sequence Container\Data Flow Task\Derived Column"
-          TopLeft="98.499998614192,115.499998360872" />
-        <NodeLayout
           Size="152,41.6"
           Id="Package\Sequence Container\Data Flow Task\OLE DB Source"
           TopLeft="156.49999819696,2.50000049173831" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Sequence Container\Data Flow Task\OLE DB Destination"
+          TopLeft="133.499999880791,313.499997198582" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Sequence Container\Data Flow Task\Derived Column"
+          TopLeft="98.499998614192,115.499998360872" />
         <EdgeLayout
           Id="Package\Sequence Container\Data Flow Task.Paths[OLE DB Source Output]"
           TopLeft="232.49999819696,44.1000004917383">
@@ -1626,10 +1630,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Sequence Container\Data Flow Task\OLE DB Destination"
-          TopLeft="133.499999880791,313.499997198582" />
         <EdgeLayout
           Id="Package\Sequence Container\Data Flow Task.Paths[Derived Column Output]"
           TopLeft="174.899998614192,157.099998360872">
