@@ -1,6 +1,7 @@
 name: Deploy SQL Jobs
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'sql/deploy_jobs.sql'
