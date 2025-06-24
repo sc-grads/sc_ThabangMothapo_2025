@@ -1,77 +1,32 @@
-name: Run SSIS Packages (via Jobs)
+name: Deploy SQL Jobs
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - 'sql/deploy_jobs.sql'
 
 jobs:
-  run-ssis-jobs:
-    runs-on: self-hosted
+  deploy-sql-jobs:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Debug Workspace
-        shell: cmd
-        run: |
-          dir /s HandsOnProject\Timesheets
-          dir /s *.dtproj
+    - name: Install SQL Server tools
+      run: |
+        sudo apt-get update
+        sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev
+        echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> $GITHUB_ENV
 
-      - name: Run SQL Script to Execute SSIS Packages
-        shell: powershell
-        run: |
-          $sqlScript = @"
-          DECLARE @execution_id bigint;
-          DECLARE @var0 smallint = 1;
-
-          -- Execute Leave.dtsx
-          EXEC [SSISDB].[catalog].[create_execution] @package_name=N'Leave.dtsx', @execution_id=@execution_id OUTPUT, @folder_name=N'TimesheetMigration', @project_name=N'Integration Services Project1', @use32bitruntime=False, @reference_id=Null, @runinscaleout=False;
-          SELECT @execution_id AS Leave_Execution_ID;
-          EXEC [SSISDB].[catalog].[set_execution_parameter_value] @execution_id, @object_type=50, @parameter_name=N'LOGGING_LEVEL', @parameter_value=@var0;
-          EXEC [SSISDB].[catalog].[start_execution] @execution_id;
-
-          -- Execute ExtractingTimesheet.dtsx
-          EXEC [SSISDB].[catalog].[create_execution] @package_name=N'ExtractingTimesheet.dtsx', @execution_id=@execution_id OUTPUT, @folder_name=N'TimesheetMigration', @project_name=N'Integration Services Project1', @use32bitruntime=False, @reference_id=Null, @runinscaleout=False;
-          SELECT @execution_id AS ExtractingTimesheet_Execution_ID;
-          EXEC [SSISDB].[catalog].[set_execution_parameter_value] @execution_id, @object_type=50, @parameter_name=N'LOGGING_LEVEL', @parameter_value=@var0;
-          EXEC [SSISDB].[catalog].[start_execution] @execution_id;
-
-          -- Execute ExtractingClientData.dtsx
-          EXEC [SSISDB].[catalog].[create_execution] @package_name=N'ExtractingClientData.dtsx', @execution_id=@execution_id OUTPUT, @folder_name=N'TimesheetMigration', @project_name=N'Integration Services Project1', @use32bitruntime=False, @reference_id=Null, @runinscaleout=False;
-          SELECT @execution_id AS ExtractingClientData_Execution_ID;
-          EXEC [SSISDB].[catalog].[set_execution_parameter_value] @execution_id, @object_type=50, @parameter_name=N'LOGGING_LEVEL', @parameter_value=@var0;
-          EXEC [SSISDB].[catalog].[start_execution] @execution_id;
-          "@
-          try {
-            $result = sqlcmd -S SAMBE202519 -E -Q $sqlScript -b
-            if ($LASTEXITCODE -ne 0) {
-              throw "SQL execution failed with exit code $LASTEXITCODE"
-            }
-            Write-Output "SSIS packages executed successfully: $result"
-          }
-          catch {
-            Write-Error "Error executing SSIS packages: $_"
-            exit 1
-          }
-
-      - name: Verify SSIS Package Execution
-        shell: powershell
-        run: |
-          $verifyScript = @"
-          SELECT operation_id, package_name, status, start_time, end_time, message
-          FROM [SSISDB].[catalog].[executions]
-          WHERE folder_name = 'TimesheetMigration'
-            AND project_name = 'Integration Services Project1'
-            AND created_time > DATEADD(MINUTE, -10, GETDATE())
-          ORDER BY created_time DESC;
-          "@
-          try {
-            $result = sqlcmd -S SAMBE202519 -E -Q $verifyScript -b
-            if ($LASTEXITCODE -ne 0) {
-              throw "Verification query failed with exit code $LASTEXITCODE"
-            }
-            Write-Output "Execution status: $result"
-          }
-          catch {
-            Write-Error "Error verifying SSIS package executions: $_"
-            exit 1
-          }
+    - name: Run SQL Job Deployment Script
+      env:
+        SQL_SERVER: ${{ secrets.SQL_SERVER }}
+        SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
+        SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+      run: |
+        /opt/mssql-tools18/bin/sqlcmd \
+          -S $SQL_SERVER \
+          -U $SQL_USERNAME \
+          -P $SQL_PASSWORD \
+          -i sql/deploy_jobs.sql
