@@ -1,33 +1,24 @@
-name: Deploy SQL Jobs
+name: Deploy SQL Agent Jobs
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sql/deploy_jobs.sql'
 
 jobs:
-  deploy-sql-jobs:
+  deploy-jobs:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install SQL Server tools
-      run: |
-        sudo apt-get update
-        sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev
-        echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> $GITHUB_ENV
+      - name: Install SQL Server tools
+        run: |
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev
 
-    - name: Run SQL Job Deployment Script
-      env:
-        SQL_SERVER: ${{ secrets.SQL_SERVER }}
-        SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
-        SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
-      run: |
-        /opt/mssql-tools18/bin/sqlcmd \
-          -S $SQL_SERVER \
-          -U $SQL_USERNAME \
-          -P $SQL_PASSWORD \
-          -i sql/deploy_jobs.sql
+      - name: Deploy SQL Agent Jobs
+        env:
+          SQL_SERVER: ${{ secrets.SQL_SERVER }}
+          SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
+          SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        run: |
+          /opt/mssql-tools18/bin/sqlcmd -S $SQL_SERVER -U $SQL_USERNAME -P $SQL_PASSWORD -d msdb -i .deploy/sqlagent_jobs.sql
