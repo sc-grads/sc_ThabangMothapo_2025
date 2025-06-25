@@ -1,235 +1,85 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="6/11/2025 12:54:06 PM"
+  DTS:CreationDate="6/13/2025 11:24:52 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="SAMBE202519"
   DTS:CreatorName="SAMBE202519\Thabang Mothapo"
-  DTS:DTSID="{59BDF672-8CE8-4E91-B548-7E932D2F52A3}"
+  DTS:DTSID="{34E4564D-0642-4B37-889A-16AD318A525E}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
-  DTS:ObjectName="AuditLog"
+  DTS:ObjectName="Package2"
   DTS:PackageType="5"
-  DTS:VersionBuild="54"
-  DTS:VersionGUID="{0918F5EC-063A-491D-9B91-AD63AED66AE3}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{FD2203B1-BC6A-46AB-AB6E-7D6C1A46C008}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
-      DTS:CreationName="EXCEL"
-      DTS:DTSID="{62E656CF-2887-472E-A1FD-B78932898EA7}"
-      DTS:ObjectName="Excel Connection Manager 3">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Thabang Mothapo April_Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{FE361FE9-7362-468D-A857-EC30D995F823}"
+      DTS:DTSID="{414D35DA-6F1A-4FCF-8FA2-023455318D5F}"
       DTS:ObjectName="LocalHost.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{FE361FE9-7362-468D-A857-EC30D995F823}LocalHost.TimesheetDB;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB 1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{42962C70-C604-4E1D-8F9C-1B655AB53468}"
-      DTS:ObjectName="LocalHost.TimesheetDB 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{42962C70-C604-4E1D-8F9C-1B655AB53468}LocalHost.TimesheetDB 1;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB 1 1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{3D17C73A-9E88-424F-BA60-736A73D274B0}"
-      DTS:ObjectName="LocalHost.TimesheetDB 1 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Looping-{3D17C73A-9E88-424F-BA60-736A73D274B0}LocalHost.TimesheetDB 1;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB 2]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{F99BDEEE-B5C2-4FBA-842A-7AAD0DDE6E65}"
-      DTS:ObjectName="LocalHost.TimesheetDB 2">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Looping-{F99BDEEE-B5C2-4FBA-842A-7AAD0DDE6E65}LocalHost.TimesheetDB;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB 4]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{4B4FB51E-1BD4-49CF-849C-4AA545089412}"
-      DTS:ObjectName="LocalHost.TimesheetDB 4">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Looping-{4B4FB51E-1BD4-49CF-849C-4AA545089412}LocalHost.TimesheetDB 4;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{414D35DA-6F1A-4FCF-8FA2-023455318D5F}LocalHost.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{9095792D-C74B-458C-88D1-B45C7E6521E7}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="Action">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{5EE1684F-0998-41D8-A992-93AC2FA9E0A5}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="Action1">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{12CF9305-8E0C-4078-8A98-BE4B17F90139}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="Action2">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{3583B4CC-8261-4D97-8C50-78168EE2FB54}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="Action3">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{ACD2D701-3A9E-4D5A-AC58-FDD97BF3DD9D}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="AuditConnectionString">
-      <DTS:VariableValue
-        DTS:DataType="8">LocalHost.TimesheetDB</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{B8E576C0-C188-4F5B-8A9D-E36B44C48C9B}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="AuditLog">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{FE72FA03-49CE-48B5-B3A7-CA284C350723}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="ChangeDate">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{D91742FE-92C5-4C78-85C9-CDB6C4FED51D}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="ChangedBy">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{2A85C1D9-E622-46F1-8027-8CB3ED254078}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="ConsultantName">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{2F9370E5-F803-47FF-98FA-0A7C540BDAF5}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="FilePath">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{D87FD3F9-349B-4DEF-BF28-D33A8E62C672}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="FolderPath">
-      <DTS:VariableValue
-        DTS:DataType="8">C:\Users\Thabang Mothapo\Desktop\Timesheets\</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{5B89CAD5-8BC6-4874-85C6-62E3CB894E19}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="TimesheetFileName">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-  </DTS:Variables>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Sequence Container"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{48A17C76-B38E-4CB9-AB6C-59635DF0DB96}"
+      DTS:DTSID="{51D84E59-7130-4786-B593-9B5BDEBEABE7}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="Sequence Container">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Data Flow Task"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{E6BBB01A-4A02-4B20-BDF4-20A1B81681BF}"
+          DTS:DTSID="{734DF954-649A-4EBF-AC2A-7A71AD6DA540}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
           <DTS:ObjectData>
             <pipeline
               version="1">
@@ -246,13 +96,6 @@
                       refId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
                       description="Input to the Derived Column Transformation"
                       name="Derived Column Input">
-                      <inputColumns>
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[TimesheetID]"
-                          cachedDataType="i4"
-                          cachedName="TimesheetID"
-                          lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimesheetID]" />
-                      </inputColumns>
                       <externalMetadataColumns />
                     </input>
                   </inputs>
@@ -265,93 +108,26 @@
                       synchronousInputId="Package\Sequence Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Action]"
+                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ErrorMessage]"
                           dataType="wstr"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          length="6"
-                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Action]"
-                          name="Action"
+                          length="12"
+                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ErrorMessage]"
+                          name="ErrorMessage"
                           truncationRowDisposition="FailComponent">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">"INSERT"</property>
+                              name="Expression">"Source Error"</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">"INSERT"</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ChangedBy]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          length="27"
-                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ChangedBy]"
-                          name="ChangedBy"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[System::UserName]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[System::UserName]</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ChangeDate]"
-                          dataType="dbTimeStamp"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ChangeDate]"
-                          name="ChangeDate"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">(DT_DBTIMESTAMP)([GETDATE]())</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">(DT_DBTIMESTAMP)(GETDATE())</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[RecordID]"
-                          dataType="i4"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[RecordID]"
-                          name="RecordID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">#{Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimesheetID]}</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">TimesheetID</property>
+                              name="FriendlyExpression">"Source Error"</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
@@ -421,7 +197,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[AuditLog]</property>
+                      name="OpenRowset">[dbo].[ErrorLog]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -473,30 +249,17 @@
                     <input
                       refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
-                      errorRowDisposition="FailComponent"
+                      errorRowDisposition="RedirectRow"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Action]"
+                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ErrorMessage]"
                           cachedDataType="wstr"
-                          cachedLength="6"
-                          cachedName="Action"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
-                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Action]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ChangedBy]"
-                          cachedDataType="wstr"
-                          cachedLength="27"
-                          cachedName="ChangedBy"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangedBy]"
-                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ChangedBy]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ChangeDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ChangeDate"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDate]"
-                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ChangeDate]" />
+                          cachedLength="12"
+                          cachedName="ErrorMessage"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorMessage]"
+                          lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ErrorMessage]" />
                         <inputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TableName]"
                           cachedDataType="wstr"
@@ -504,46 +267,30 @@
                           cachedName="TableName"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
                           lineageId="Package\Sequence Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[TableName]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TimesheetID]"
-                          cachedDataType="i4"
-                          cachedName="TimesheetID"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
-                          lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimesheetID]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AuditLogID]"
+                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorLogID]"
                           dataType="i4"
-                          name="AuditLogID" />
+                          name="ErrorLogID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorMessage]"
+                          dataType="nText"
+                          name="ErrorMessage" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorTime]"
+                          dataType="dbTimeStamp"
+                          name="ErrorTime" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowData]"
+                          dataType="nText"
+                          name="RowData" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
                           dataType="wstr"
                           length="100"
                           name="TableName" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
-                          dataType="wstr"
-                          length="10"
-                          name="Action" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
-                          dataType="i4"
-                          name="RecordID" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangedBy]"
-                          dataType="wstr"
-                          length="100"
-                          name="ChangedBy" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDate]"
-                          dataType="dbTimeStamp"
-                          name="ChangeDate" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDetails]"
-                          dataType="nText"
-                          name="ChangeDetails" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -597,7 +344,7 @@
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM dbo.Timesheet</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -641,7 +388,7 @@
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TimesheetID]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimesheetID]"
                           name="TimesheetID"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsultantID]"
                           dataType="i4"
@@ -650,7 +397,7 @@
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConsultantID]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsultantID]"
                           name="ConsultantID"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EntryDate]"
                           dataType="dbDate"
@@ -659,7 +406,7 @@
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EntryDate]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EntryDate]"
                           name="EntryDate"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeek]"
                           dataType="wstr"
@@ -669,7 +416,7 @@
                           length="20"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeek]"
                           name="DayOfWeek"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClientID]"
                           dataType="i4"
@@ -678,7 +425,7 @@
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClientID]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClientID]"
                           name="ClientID"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClientName]"
                           dataType="wstr"
@@ -688,7 +435,7 @@
                           length="100"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClientName]"
                           name="ClientName"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
                           dataType="wstr"
@@ -698,7 +445,7 @@
                           length="500"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
                           name="Description"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BillingStatus]"
                           dataType="wstr"
@@ -708,7 +455,7 @@
                           length="20"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BillingStatus]"
                           name="BillingStatus"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Comments]"
                           dataType="wstr"
@@ -718,7 +465,7 @@
                           length="1000"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Comments]"
                           name="Comments"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalHours]"
                           dataType="dbTime2"
@@ -727,7 +474,7 @@
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalHours]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalHours]"
                           name="TotalHours"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartTime]"
                           dataType="dbTime2"
@@ -736,7 +483,7 @@
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartTime]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartTime]"
                           name="StartTime"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndTime]"
                           dataType="dbTime2"
@@ -745,7 +492,7 @@
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EndTime]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndTime]"
                           name="EndTime"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
                           dataType="dbTimeStamp2"
@@ -755,7 +502,7 @@
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
                           name="CreatedDateTime"
                           scale="7"
-                          truncationRowDisposition="FailComponent" />
+                          truncationRowDisposition="RedirectRow" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -932,12 +679,14 @@
           DTS:refId="Package\Sequence Container\Data Flow Task 1"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{2D8CF633-658D-41ED-97F8-88CB7788928F}"
+          DTS:DTSID="{9C8CA0B1-77AA-4520-92C8-DF522346DD59}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task 1"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
           <DTS:ObjectData>
             <pipeline
               version="1">
@@ -954,13 +703,6 @@
                       refId="Package\Sequence Container\Data Flow Task 1\Derived Column.Inputs[Derived Column Input]"
                       description="Input to the Derived Column Transformation"
                       name="Derived Column Input">
-                      <inputColumns>
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\Derived Column.Inputs[Derived Column Input].Columns[LeaveID]"
-                          cachedDataType="i4"
-                          cachedName="LeaveID"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[LeaveID]" />
-                      </inputColumns>
                       <externalMetadataColumns />
                     </input>
                   </inputs>
@@ -972,51 +714,6 @@
                       name="Derived Column Output"
                       synchronousInputId="Package\Sequence Container\Data Flow Task 1\Derived Column.Inputs[Derived Column Input]">
                       <outputColumns>
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[ChangedBy]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          length="27"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[ChangedBy]"
-                          name="ChangedBy"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">@[System::UserName]</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">@[System::UserName]</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[ChangeDate]"
-                          dataType="dbTimeStamp"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[ChangeDate]"
-                          name="ChangeDate"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">(DT_DBTIMESTAMP)([GETDATE]())</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">(DT_DBTIMESTAMP)(GETDATE())</property>
-                          </properties>
-                        </outputColumn>
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[TableName]"
                           dataType="wstr"
@@ -1038,51 +735,6 @@
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
                               name="FriendlyExpression">"Leave"</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[Action]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          length="6"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[Action]"
-                          name="Action"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">"INSERT"</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">"INSERT"</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[RecordID]"
-                          dataType="i4"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[RecordID]"
-                          name="RecordID"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">#{Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[LeaveID]}</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">LeaveID</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -1129,7 +781,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[AuditLog]</property>
+                      name="OpenRowset">[dbo].[ErrorLog]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1186,72 +838,36 @@
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ChangedBy]"
-                          cachedDataType="wstr"
-                          cachedLength="27"
-                          cachedName="ChangedBy"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangedBy]"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[ChangedBy]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ChangeDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ChangeDate"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDate]"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[ChangeDate]" />
-                        <inputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TableName]"
                           cachedDataType="wstr"
                           cachedLength="5"
                           cachedName="TableName"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
                           lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[TableName]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Action]"
-                          cachedDataType="wstr"
-                          cachedLength="6"
-                          cachedName="Action"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\Derived Column.Outputs[Derived Column Output].Columns[Action]" />
-                        <inputColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LeaveID]"
-                          cachedDataType="i4"
-                          cachedName="LeaveID"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
-                          lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[LeaveID]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AuditLogID]"
+                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorLogID]"
                           dataType="i4"
-                          name="AuditLogID" />
+                          name="ErrorLogID" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorMessage]"
+                          dataType="nText"
+                          name="ErrorMessage" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorTime]"
+                          dataType="dbTimeStamp"
+                          name="ErrorTime" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowData]"
+                          dataType="nText"
+                          name="RowData" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
                           dataType="wstr"
                           length="100"
                           name="TableName" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Action]"
-                          dataType="wstr"
-                          length="10"
-                          name="Action" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordID]"
-                          dataType="i4"
-                          name="RecordID" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangedBy]"
-                          dataType="wstr"
-                          length="100"
-                          name="ChangedBy" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDate]"
-                          dataType="dbTimeStamp"
-                          name="ChangeDate" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDetails]"
-                          dataType="nText"
-                          name="ChangeDetails" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1562,20 +1178,20 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Sequence Container\Data Flow Task"
-          TopLeft="24.5666646632883,20.1666651238337" />
-        <NodeLayout
           Size="159.2,41.6"
           Id="Package\Sequence Container\Data Flow Task 1"
-          TopLeft="27.0666645266944,89.4999979750316" />
+          TopLeft="24.2666667121979,67.7666648345524" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Sequence Container\Data Flow Task"
+          TopLeft="20.9333319218623,17.833331639833" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="204.8,185.6"
-          Size="204.8,228.8"
+          PanelSize="204.8,164"
+          Size="204.8,207.2"
           Id="Package\Sequence Container"
-          TopLeft="87.499995219211,66.7333328692778" />
+          TopLeft="10.4999997268121,188.366665395035" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1587,41 +1203,25 @@
         <NodeLayout
           Size="152,41.6"
           Id="Package\Sequence Container\Data Flow Task\OLE DB Source"
-          TopLeft="156.49999819696,2.50000049173831" />
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Sequence Container\Data Flow Task\OLE DB Destination"
-          TopLeft="133.499999880791,313.499997198582" />
+          TopLeft="104.666661248439,13.2999999457598" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\Sequence Container\Data Flow Task\Derived Column"
-          TopLeft="98.499998614192,115.499998360872" />
+          TopLeft="108.666661248439,125.966665828957" />
         <EdgeLayout
           Id="Package\Sequence Container\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="232.49999819696,44.1000004917383">
+          TopLeft="182.866661248439,54.8999999457598">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-57.5999995827675,71.399997869134"
+              EndConnector="0,71.0666658831967"
               Start="0,0"
-              End="-57.5999995827675,63.899997869134">
+              End="0,63.5666658831967">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.699998934567" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.699998934567"
-                    Point2="0,35.699998934567"
-                    Point3="-4,35.699998934567" />
-                  <mssgle:LineSegment
-                    End="-53.5999995827675,35.699998934567" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-53.5999995827675,35.699998934567"
-                    Point2="-57.5999995827675,35.699998934567"
-                    Point3="-57.5999995827675,39.699998934567" />
-                  <mssgle:LineSegment
-                    End="-57.5999995827675,63.899997869134" />
+                    End="0,63.5666658831967" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1630,32 +1230,36 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Sequence Container\Data Flow Task\OLE DB Destination"
+          TopLeft="15.4999994536241,258.566664906873" />
         <EdgeLayout
           Id="Package\Sequence Container\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="174.899998614192,157.099998360872">
+          TopLeft="185.066661248439,167.566665828957">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="44.2000012665987,156.399998837709"
+              EndConnector="-83.966661794815,90.9999990779162"
               Start="0,0"
-              End="44.2000012665987,148.899998837709">
+              End="-83.966661794815,83.4999990779162">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,74.1999994188547" />
+                    End="0,41.4999995389581" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,74.1999994188547"
-                    Point2="0,78.1999994188547"
-                    Point3="4,78.1999994188547" />
+                    Point1="0,41.4999995389581"
+                    Point2="0,45.4999995389581"
+                    Point3="-4,45.4999995389581" />
                   <mssgle:LineSegment
-                    End="40.2000012665987,78.1999994188547" />
+                    End="-79.966661794815,45.4999995389581" />
                   <mssgle:CubicBezierSegment
-                    Point1="40.2000012665987,78.1999994188547"
-                    Point2="44.2000012665987,78.1999994188547"
-                    Point3="44.2000012665987,82.1999994188547" />
+                    Point1="-79.966661794815,45.4999995389581"
+                    Point2="-83.966661794815,45.4999995389581"
+                    Point3="-83.966661794815,49.4999995389581" />
                   <mssgle:LineSegment
-                    End="44.2000012665987,148.899998837709" />
+                    End="-83.966661794815,83.4999990779162" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1701,25 +1305,41 @@
         <NodeLayout
           Size="152,41.6"
           Id="Package\Sequence Container\Data Flow Task 1\OLE DB Source"
-          TopLeft="63.4999991357327,12.4999998956919" />
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Sequence Container\Data Flow Task 1\OLE DB Destination"
+          TopLeft="45.4999998509884,201.499997526407" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\Sequence Container\Data Flow Task 1\Derived Column"
-          TopLeft="67.4999999701976,163.499998539686" />
+          TopLeft="126.499999091029,96.499999538064" />
         <EdgeLayout
           Id="Package\Sequence Container\Data Flow Task 1.Paths[OLE DB Source Output]"
-          TopLeft="141.699999552965,54.0999998956919">
+          TopLeft="81.5,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,109.399998643994"
+              EndConnector="121.399999091029,49.399999538064"
               Start="0,0"
-              End="0,101.899998643994">
+              End="121.399999091029,41.899999538064">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,101.899998643994" />
+                    End="0,20.699999769032" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.699999769032"
+                    Point2="0,24.699999769032"
+                    Point3="4,24.699999769032" />
+                  <mssgle:LineSegment
+                    End="117.399999091029,24.699999769032" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117.399999091029,24.699999769032"
+                    Point2="121.399999091029,24.699999769032"
+                    Point3="121.399999091029,28.699999769032" />
+                  <mssgle:LineSegment
+                    End="121.399999091029,41.899999538064" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1728,24 +1348,32 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Sequence Container\Data Flow Task 1\OLE DB Destination"
-          TopLeft="58.500000551343,302.49999691546" />
         <EdgeLayout
           Id="Package\Sequence Container\Data Flow Task 1.Paths[Derived Column Output]"
-          TopLeft="144.00000026077,205.099998539686">
+          TopLeft="202.899999091029,138.099999538064">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,97.3999983757734"
+              EndConnector="-71.7999992400408,63.3999979883433"
               Start="0,0"
-              End="0,89.8999983757734">
+              End="-71.7999992400408,55.8999979883433">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,89.8999983757734" />
+                    End="0,27.6999989941717" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6999989941717"
+                    Point2="0,31.6999989941717"
+                    Point3="-4,31.6999989941717" />
+                  <mssgle:LineSegment
+                    End="-67.7999992400408,31.6999989941717" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-67.7999992400408,31.6999989941717"
+                    Point2="-71.7999992400408,31.6999989941717"
+                    Point3="-71.7999992400408,35.6999989941717" />
+                  <mssgle:LineSegment
+                    End="-71.7999992400408,55.8999979883433" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

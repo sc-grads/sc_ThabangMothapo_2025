@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/4/2025 3:19:41 PM"
@@ -11,13 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="ExtractingClientData"
   DTS:PackageType="5"
-<<<<<<< HEAD
   DTS:VersionBuild="17"
-  DTS:VersionGUID="{930265EA-C960-4707-994E-050BCC21801B}">
-=======
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{53F72786-ACFE-4B48-B3FE-6F3EEB70D7EC}">
->>>>>>> 16c43a33699ac499abdff88bff0e54a8c24d2cd9
+  DTS:VersionGUID="{9A9D0BBC-1ACD-4289-80F3-023210A0ADAE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -329,11 +324,7 @@
     design-time-name="Package\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-<<<<<<< HEAD
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-=======
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
->>>>>>> 16c43a33699ac499abdff88bff0e54a8c24d2cd9
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Data Flow Task\OLE DB Destination"
@@ -373,13 +364,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-<<<<<<< HEAD
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-=======
             <EdgeLabelCollection />
->>>>>>> 16c43a33699ac499abdff88bff0e54a8c24d2cd9
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
