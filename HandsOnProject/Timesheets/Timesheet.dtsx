@@ -1,62 +1,26 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="6/4/2025 2:27:35 PM"
+  DTS:CreationDate="6/25/2025 9:22:15 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="SAMBE202519"
   DTS:CreatorName="SAMBE202519\Thabang Mothapo"
-  DTS:DTSID="{36627906-C9BB-4203-AFF3-DBA231EF08DE}"
+  DTS:DTSID="{2601DB9B-5151-4B36-9E61-24FCD40D1487}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
-  DTS:ObjectName="ExtractingTimesheet"
+  DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="161"
-  DTS:VersionGUID="{8B93D9BA-F52C-4C4E-AE8E-92179B225946}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{D69E6A65-24F6-4D94-BBEB-4EF1F3CC147C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
-      DTS:CreationName="EXCEL"
-      DTS:DTSID="{448B7638-C215-4D8C-872E-8C50DC27E2C1}"
-      DTS:ObjectName="Excel Connection Manager">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Thabang Mothapo April_Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
-      DTS:CreationName="EXCEL"
-      DTS:DTSID="{FBC982D2-3EE5-4903-BE35-0378430B742E}"
-      DTS:ObjectName="Excel Connection Manager 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Thabang Mothapo May-Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{61AF979D-97FC-4492-A3F5-717772273A18}"
+      DTS:DTSID="{C8B0BE58-9072-4859-B200-0348910B0D2F}"
       DTS:ObjectName="Excel Connection Manager 2">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Thabang Mothapo\Desktop\Timesheets\Thabang\Thabang Mothapo-March Final week.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
-      DTS:CreationName="EXCEL"
-      DTS:DTSID="{EE272824-39E1-4B15-A0CC-F23D96F6041A}"
-      DTS:ObjectName="Excel Connection Manager 3">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
@@ -67,32 +31,20 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{4D0AB29E-3FE6-466D-B5C1-BE72FCD5AB28}"
+      DTS:DTSID="{5C575323-09D4-413F-85BD-7A3B3296A5A5}"
       DTS:ObjectName="LocalHost.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ExtractingTimesheet-{4D0AB29E-3FE6-466D-B5C1-BE72FCD5AB28}LocalHost.TimesheetDB;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB 1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{9005BD6B-F255-4B0A-A8CA-383336891CAE}"
-      DTS:ObjectName="LocalHost.TimesheetDB 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ExtractingTimesheet-{9005BD6B-F255-4B0A-A8CA-383336891CAE}LocalHost.TimesheetDB 1;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ExtractingTimesheet-{5C575323-09D4-413F-85BD-7A3B3296A5A5}LocalHost.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{1D0630A8-E169-4023-A38E-65B41A81B8BE}"
+      DTS:DTSID="{4EAC1869-7165-41DD-B937-B86527340B6F}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="RIGHT(&#xA;  LEFT(@[User::FilePath], LEN(@[User::FilePath]) - FINDSTRING(REVERSE(@[User::FilePath]), &quot;\\&quot;, 1)),&#xA;  FINDSTRING(REVERSE(LEFT(@[User::FilePath], LEN(@[User::FilePath]) - FINDSTRING(REVERSE(@[User::FilePath]), &quot;\\&quot;, 1))), &quot;\\&quot;, 1) - 1&#xA;)"
       DTS:IncludeInDebugDump="2345"
@@ -103,18 +55,16 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{1D8EEDC3-3286-4BA9-9839-78F99B142FE2}"
-      DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Error Associated with ConsultantID &quot; + (DT_WSTR, 12) @[User::ConsultantName]"
+      DTS:DTSID="{A03C5246-4DFB-4DE7-A338-6B708A4AAD49}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ErrorMessage">
       <DTS:VariableValue
-        DTS:DataType="8">Error Associated with ConsultantID Thabang</DTS:VariableValue>
+        DTS:DataType="8">"Error Associated with ConsultantID " + (DT_WSTR, 12) @[User::ConsultantName]</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{A47F6CB1-32FB-4D30-ADB7-6A94535E22A8}"
+      DTS:DTSID="{1A44C747-B8FC-4202-BE9A-A801FA0ABE85}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="FilePath">
@@ -123,7 +73,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{722EA4CD-D3A4-4156-8E64-3741C179C259}"
+      DTS:DTSID="{D3924B15-B30A-4D03-8637-759C2F8B7BA7}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="FolderPath">
@@ -132,7 +82,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{DF45BC60-DE5C-4FF0-9656-75595BE02934}"
+      DTS:DTSID="{39B47C8A-D958-4D36-A043-7C5C1A7EF180}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="TableName">
@@ -145,14 +95,14 @@
       DTS:refId="Package\Foreach Loop Container"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{74CF4DB0-4969-47D3-8CEA-181D90E55B39}"
+      DTS:DTSID="{6d136e06-bb84-4a1a-9f02-6af5daad489a}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="Foreach Loop Container">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
-        DTS:DTSID="{5D414F25-E7A4-48A3-971F-2561EE4858B3}"
-        DTS:ObjectName="{5D414F25-E7A4-48A3-971F-2561EE4858B3}">
+        DTS:DTSID="{ac1c27c6-45e3-4428-b8ee-786d6b25ace4}"
+        DTS:ObjectName="{C0ACE7B1-404B-46AC-9DDE-56A44D0E9928}">
         <DTS:PropertyExpression
           DTS:Name="Directory">@[User::FolderPath]</DTS:PropertyExpression>
         <DTS:ObjectData>
@@ -175,7 +125,7 @@
           DTS:CreationName="Microsoft.Pipeline"
           DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{068682DB-13DB-4314-818D-CAAFF83CFCC6}"
+          DTS:DTSID="{04ee048b-7448-4d1e-8d71-430f5bb6c828}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
@@ -242,7 +192,7 @@ where [refTable].[ClientName] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Foreach Loop Container\Data Flow Task\194:invalid};</property>
+                      name="ParameterMap">#{Package\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Client]};</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -793,8 +743,8 @@ where [refTable].[ConsultantName] = ?</property>
                   <connections>
                     <connection
                       refId="Package\Foreach Loop Container\Data Flow Task\Excel Source.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
-                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 2]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 2]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -858,7 +808,7 @@ where [refTable].[ConsultantName] = ?</property>
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Comments]"
-                          length="255"
+                          length="4000"
                           lineageId="Package\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Comments]"
                           name="Comments"
                           truncationRowDisposition="FailComponent" />
@@ -1071,8 +1021,8 @@ where [refTable].[ConsultantName] = ?</property>
                   <connections>
                     <connection
                       refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[LocalHost.TimesheetDB 1]"
-                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.TimesheetDB 1]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.TimesheetDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1094,7 +1044,7 @@ where [refTable].[ConsultantName] = ?</property>
                         <inputColumn
                           refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Comments]"
                           cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedLength="4000"
                           cachedName="Comments"
                           externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Comments]"
                           lineageId="Package\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Comments]" />
@@ -1131,6 +1081,13 @@ where [refTable].[ConsultantName] = ?</property>
                           externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClientID]"
                           lineageId="Package\Foreach Loop Container\Data Flow Task\ClientLookUp.Outputs[Lookup Match Output].Columns[ClientID]" />
                         <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Total Hours]"
+                          cachedDataType="numeric"
+                          cachedName="Copy of Total Hours"
+                          cachedPrecision="18"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalHours]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Total Hours]" />
+                        <inputColumn
                           refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Start Time]"
                           cachedDataType="numeric"
                           cachedName="Copy of Start Time"
@@ -1144,13 +1101,6 @@ where [refTable].[ConsultantName] = ?</property>
                           cachedPrecision="18"
                           externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndTime]"
                           lineageId="Package\Foreach Loop Container\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Time]" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Total Hours]"
-                          cachedDataType="numeric"
-                          cachedName="Copy of Total Hours"
-                          cachedPrecision="18"
-                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalHours]"
-                          lineageId="Package\Foreach Loop Container\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Total Hours]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1334,18 +1284,14 @@ where [refTable].[ConsultantName] = ?</property>
                           dataType="nText"
                           name="ErrorMessage" />
                         <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorTime]"
+                          dataType="dbTimeStamp"
+                          name="ErrorTime" />
+                        <externalMetadataColumn
                           refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
                           dataType="wstr"
                           length="100"
                           name="TableName" />
-                        <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDate]"
-                          dataType="dbTimeStamp"
-                          name="ErrorDate" />
-                        <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
-                          dataType="i4"
-                          name="ConsultantID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1414,20 +1360,20 @@ where [refTable].[ConsultantName] = ?</property>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{4BB0EFE6-BE60-48A1-8849-7C5C0D7F21C2}"
-          DTS:ObjectName="{4BB0EFE6-BE60-48A1-8849-7C5C0D7F21C2}"
+          DTS:DTSID="{ed35e6e6-751a-4cd2-86be-f3e8b61fb3e6}"
+          DTS:ObjectName="{4EDEA9F0-E49F-4850-8731-58C1902C685C}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::FolderPath" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{8A6886E5-2678-4E16-85FE-79A197A97F77}"
-          DTS:ObjectName="{8A6886E5-2678-4E16-85FE-79A197A97F77}"
+          DTS:DTSID="{6017b84c-90a7-4aef-b1bf-35be47852dca}"
+          DTS:ObjectName="{7C5D51AD-3ED6-4C19-9502-A308747499BF}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::FilePath" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{AC4C53F9-0F6D-4FFF-ACF1-3C5E9F6E3DD6}"
-          DTS:ObjectName="{AC4C53F9-0F6D-4FFF-ACF1-3C5E9F6E3DD6}"
+          DTS:DTSID="{950c5676-6526-4490-98e0-79eb2839f4f2}"
+          DTS:ObjectName="{3DDBE34C-4AE3-4C53-A43E-6EFCE9F5E7AD}"
           DTS:ValueIndex="2"
           DTS:VariableName="User::ConsultantName" />
       </DTS:ForEachVariableMappings>
@@ -1455,7 +1401,7 @@ where [refTable].[ConsultantName] = ?</property>
           PanelSize="204.8,124"
           Size="204.8,167.2"
           Id="Package\Foreach Loop Container"
-          TopLeft="33.8333317852683,49.6999996926387" />
+          TopLeft="60,60" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1467,45 +1413,45 @@ where [refTable].[ConsultantName] = ?</property>
         <NodeLayout
           Size="140.8,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\ClientLookUp"
-          TopLeft="55.3148137321811,143.048147530078" />
+          TopLeft="55.3148137321811,142.181480869438" />
         <NodeLayout
           Size="180,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination 1"
-          TopLeft="445.499975959461,318.166664509111" />
+          TopLeft="445.499975959461,317.299997848471" />
         <NodeLayout
           Size="164,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\ConsultantLookUp"
-          TopLeft="267.999988935888,195.40370280037" />
+          TopLeft="267.999988935888,194.53703613973" />
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination"
-          TopLeft="168.185176296459,317.403701534764" />
+          TopLeft="168.185176296459,316.537034874124" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\Derived Column"
-          TopLeft="242.629618312566,105.699999511838" />
+          TopLeft="242.629618312566,104.833332851198" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\Data Conversion"
-          TopLeft="8.83333315120804,272.499998788635" />
+          TopLeft="8.83333315120804,271.633332127995" />
         <NodeLayout
           Size="140,41.6"
           Id="Package\Foreach Loop Container\Data Flow Task\Excel Source"
-          TopLeft="5.5,5.5" />
+          TopLeft="187.999991667768,6.61111131200088" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[OLE DB Destination Error Output]"
-          TopLeft="339.385176296459,338.585183021937">
+          TopLeft="339.385176296459,337.718516361298">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
               EndConnector="106.114799663002,0"
               Start="0,0"
-              End="98.6147996630019,0">
+              End="98.614799663002,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="98.6147996630019,0" />
+                    End="98.614799663002,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1518,7 +1464,7 @@ where [refTable].[ConsultantName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[Lookup Match Output1]"
-          TopLeft="125.714813732181,184.648147530078">
+          TopLeft="125.714813732181,183.781480869438">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1554,7 +1500,7 @@ where [refTable].[ConsultantName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[Lookup Match Output]"
-          TopLeft="267.999988935888,216.20370280037">
+          TopLeft="267.999988935888,215.33703613973">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1590,30 +1536,30 @@ where [refTable].[ConsultantName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[Excel Source Output]"
-          TopLeft="75.5,47.1">
+          TopLeft="257.999991667768,48.2111113120009">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="243.529618312566,58.599999511838"
+              EndConnector="61.029626644798,56.6222215391971"
               Start="0,0"
-              End="243.529618312566,51.099999511838">
+              End="61.029626644798,49.1222215391971">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.299999755919" />
+                    End="0,24.3111107695986" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,25.299999755919"
-                    Point2="0,29.299999755919"
-                    Point3="4,29.299999755919" />
+                    Point1="0,24.3111107695986"
+                    Point2="0,28.3111107695986"
+                    Point3="4,28.3111107695986" />
                   <mssgle:LineSegment
-                    End="239.529618312566,29.299999755919" />
+                    End="57.029626644798,28.3111107695986" />
                   <mssgle:CubicBezierSegment
-                    Point1="239.529618312566,29.299999755919"
-                    Point2="243.529618312566,29.299999755919"
-                    Point3="243.529618312566,33.299999755919" />
+                    Point1="57.029626644798,28.3111107695986"
+                    Point2="61.029626644798,28.3111107695986"
+                    Point3="61.029626644798,32.3111107695986" />
                   <mssgle:LineSegment
-                    End="243.529618312566,51.099999511838" />
+                    End="61.029626644798,49.1222215391971" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1624,7 +1570,7 @@ where [refTable].[ConsultantName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="319.029618312566,147.299999511838">
+          TopLeft="319.029618312566,146.433332851198">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1658,7 +1604,7 @@ where [refTable].[ConsultantName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[Data Conversion Output]"
-          TopLeft="164.833333151208,293.299998788635">
+          TopLeft="164.833333151208,292.433332127995">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1687,90 +1633,5 @@ where [refTable].[ConsultantName] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Data Flow Task\ClientLookUp">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Client]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination 1">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Data Flow Task\ConsultantLookUp">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Consultant]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container\Data Flow Task\Excel Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
