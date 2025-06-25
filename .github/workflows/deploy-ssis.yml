@@ -17,7 +17,6 @@ jobs:
           Write-Output "Workspace path: ${{ github.workspace }}"
           Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
           Get-ChildItem -Path "${{ github.workspace }}" -Recurse
-
       - name: Verify SSIS project file exists
         shell: powershell
         run: |
@@ -27,7 +26,6 @@ jobs:
             exit 1
           }
           Write-Output "Found SSIS project file at $projectPath"
-
       - name: Verify SSIS build tools exist
         shell: powershell
         run: |
@@ -44,7 +42,6 @@ jobs:
             exit 1
           }
           Write-Output "All required tools found."
-
       - name: Build SSIS Project
         shell: powershell
         run: |
@@ -61,7 +58,6 @@ jobs:
             exit 1
           }
           Write-Output "Build succeeded: $ispacPath"
-
       - name: Create SSIS Catalog Folder if missing
         shell: powershell
         run: |
@@ -75,7 +71,6 @@ jobs:
           } else {
             Write-Output "Folder '$folderName' exists."
           }
-
       - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
