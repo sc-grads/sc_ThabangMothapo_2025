@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/10/2025 10:02:35 AM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Leave"
   DTS:PackageType="5"
-  DTS:VersionBuild="76"
-  DTS:VersionGUID="{67F7DF32-FCEA-4FEA-BFD5-733DA6B61765}">
+  DTS:VersionBuild="83"
+  DTS:VersionGUID="{BCC18873-1CB3-4353-B19F-8BB31A2FE162}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -434,6 +434,11 @@
                       cachedLength="255"
                       cachedName="Sick Note"
                       lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Number of days ]"
+                      cachedDataType="r8"
+                      cachedName="Number of days "
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -447,8 +452,7 @@
                   <outputColumns>
                     <outputColumn
                       refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Type of Leave]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
@@ -509,8 +513,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Approval Obtained]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
@@ -531,8 +534,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Sick Note]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       length="255"
@@ -545,6 +547,26 @@
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
                           name="SourceInputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]"
+                      name="Copy of Number of days"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -1094,8 +1116,7 @@
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ConsultantID]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Type of Leave]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Copy of Type of Leave"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeaveType]"
@@ -1114,20 +1135,24 @@
                       lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of End Date]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Sick Note]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Copy of Sick Note"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SickNote]"
                       lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Sick Note]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Approval Obtained]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Copy of Approval Obtained"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApprovalObtained]"
                       lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Approval Obtained]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Number of days]"
+                      cachedDataType="r8"
+                      cachedName="Copy of Number of days"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberOfDays]"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1141,9 +1166,8 @@
                       name="ConsultantID" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LeaveType]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
+                      dataType="wstr"
+                      length="50"
                       name="LeaveType" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
@@ -1159,15 +1183,13 @@
                       name="NumberOfDays" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApprovalObtained]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
+                      dataType="wstr"
+                      length="10"
                       name="ApprovalObtained" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SickNote]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
+                      dataType="wstr"
+                      length="10"
                       name="SickNote" />
                   </externalMetadataColumns>
                 </input>
@@ -1295,14 +1317,18 @@
                       dataType="nText"
                       name="ErrorMessage" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorTime]"
-                      dataType="dbTimeStamp"
-                      name="ErrorTime" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
                       dataType="wstr"
                       length="100"
                       name="TableName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDate]"
+                      dataType="dbTimeStamp"
+                      name="ErrorDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
+                      dataType="i4"
+                      name="ConsultantID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1388,9 +1414,9 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="619.944411612221,231.533333338433" />
+          Size="180,41.6"
+          Id="Package\Data Flow Task\OLE DB Destination 1"
+          TopLeft="390.499978964529,375.833332616157" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Data Flow Task\Data Conversion"
@@ -1400,13 +1426,17 @@
           Id="Package\Data Flow Task\Derived Column"
           TopLeft="195.333329477244,358.981056172311" />
         <NodeLayout
+          Size="140,41.6"
+          Id="Package\Data Flow Task\Excel Source"
+          TopLeft="101.166665159166,33.0000004023314" />
+        <NodeLayout
           Size="153.6,41.6"
           Id="Package\Data Flow Task\Conditional Split"
           TopLeft="329.166656859219,218.247725059383" />
         <NodeLayout
-          Size="140,41.6"
-          Id="Package\Data Flow Task\Excel Source"
-          TopLeft="101.166665159166,33.0000004023314" />
+          Size="171.2,41.6"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="619.944411612221,231.533333338433" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Excel Source Output]"
           TopLeft="171.166665159166,74.6000004023314">
@@ -1438,13 +1468,83 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-50.8344716168941,46.3905288535654,35.6689453125,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="180,41.6"
-          Id="Package\Data Flow Task\OLE DB Destination 1"
-          TopLeft="390.499978964529,375.833332616157" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="295.866662810577,358.981056172311">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="85.8333273819753,-99.1333311129278"
+              Start="0,0"
+              End="85.8333273819753,-91.6333311129278">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-45.569958628758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-45.569958628758"
+                    Point2="0,-49.569958628758"
+                    Point3="4,-49.569958628758" />
+                  <mssgle:LineSegment
+                    End="81.8333273819753,-49.569958628758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="81.8333273819753,-49.569958628758"
+                    Point2="85.8333273819753,-49.569958628758"
+                    Point3="85.8333273819753,-53.569958628758" />
+                  <mssgle:LineSegment
+                    End="85.8333273819753,-91.6333311129278" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="25.0821910347376,-44.569958628758,35.6689453125,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="105.166667237878,198.981058109462">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="166.566662239366,159.999998062849"
+              Start="0,0"
+              End="166.566662239366,152.499998062849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.9999990314245" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,75.9999990314245"
+                    Point2="0,79.9999990314245"
+                    Point3="4,79.9999990314245" />
+                  <mssgle:LineSegment
+                    End="162.566662239366,79.9999990314245" />
+                  <mssgle:CubicBezierSegment
+                    Point1="162.566662239366,79.9999990314245"
+                    Point2="166.566662239366,79.9999990314245"
+                    Point3="166.566662239366,83.9999990314245" />
+                  <mssgle:LineSegment
+                    End="166.566662239366,152.499998062849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="65.448858463433,84.9999990314245,35.6689453125,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Conditional Split Error Output]"
           TopLeft="430.233323525886,259.847725059383">
@@ -1482,74 +1582,6 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Data Conversion Output]"
-          TopLeft="105.166667237878,198.981058109462">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="166.566662239366,159.999998062849"
-              Start="0,0"
-              End="166.566662239366,152.499998062849">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,75.9999990314245" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,75.9999990314245"
-                    Point2="0,79.9999990314245"
-                    Point3="4,79.9999990314245" />
-                  <mssgle:LineSegment
-                    End="162.566662239366,79.9999990314245" />
-                  <mssgle:CubicBezierSegment
-                    Point1="162.566662239366,79.9999990314245"
-                    Point2="166.566662239366,79.9999990314245"
-                    Point3="166.566662239366,83.9999990314245" />
-                  <mssgle:LineSegment
-                    End="166.566662239366,152.499998062849" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="295.866662810577,358.981056172311">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="85.8333273819753,-99.1333311129278"
-              Start="0,0"
-              End="85.8333273819753,-91.6333311129278">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-45.569958628758" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-45.569958628758"
-                    Point2="0,-49.569958628758"
-                    Point3="4,-49.569958628758" />
-                  <mssgle:LineSegment
-                    End="81.8333273819753,-49.569958628758" />
-                  <mssgle:CubicBezierSegment
-                    Point1="81.8333273819753,-49.569958628758"
-                    Point2="85.8333273819753,-49.569958628758"
-                    Point3="85.8333273819753,-53.569958628758" />
-                  <mssgle:LineSegment
-                    End="85.8333273819753,-91.6333311129278" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Data Flow Task.Paths[Conditional Split Default Output]"
           TopLeft="482.766656859219,239.047725059383">
           <EdgeLayout.Curve>
@@ -1581,7 +1613,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-2.02502887349925,-17.658203125,141.2278125,11.658203125"
+              BoundingBox="-21.9103804359992,-17.658203125,180.998515625,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1589,7 +1621,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\Data Flow Task\OLE DB Destination 1">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1610,7 +1642,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination 1">
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
