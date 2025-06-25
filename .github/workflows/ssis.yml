@@ -21,7 +21,7 @@ jobs:
         shell: powershell
         run: |
           $projectPath = "${{ github.workspace }}\HandsOnProject\Timesheets"
-          if (-not (Test-Path "$projectPath\TimesheetMigration.dtproj")) {
+          if (-not (Test-Path "$projectPath\Integration Services Project1.dtproj")) {
             Write-Error "SSIS project file not found at: $projectPath"
             exit 1
           }
@@ -45,14 +45,14 @@ jobs:
       - name: Build SSIS Project
         shell: powershell
         run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\TimesheetMigration.dtproj"
+          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\Integration Services Project1.dtproj"
           $outputDir = "${{ runner.temp }}\SSISOutput"
           $config = "Development"
           if (-not (Test-Path $outputDir)) {
             New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
           }
           & "C:\SSISDevOpsTools\SSISBuild.exe" -p:"$projectFile" -o:"$outputDir" -c:"$config" -l:DIAG
-          $ispacPath = Join-Path $outputDir "$config\TimesheetMigration.ispac"
+          $ispacPath = Join-Path $outputDir "$config\Integration Services Project1.ispac"
           if (-not (Test-Path $ispacPath)) {
             Write-Error "Build failed: .ispac file not found at $ispacPath"
             exit 1
@@ -74,11 +74,11 @@ jobs:
       - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
-          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigration.ispac"
+          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\Integration Services Project1.ispac"
           $sqlServer = "SAMBE202519"
           $catalogDB = "SSISDB"
           $folderName = "TimesheetMigration"
-          $projectName = "TimesheetMigration"
+          $projectName = "Integration Services Project1"
           Add-Type -AssemblyName System.Data
           Write-Output "Reading .ispac file from $ispacPath"
           $projectBytes = [System.IO.File]::ReadAllBytes($ispacPath)
