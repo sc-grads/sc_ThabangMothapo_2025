@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/11/2025 12:54:06 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="AuditLog"
   DTS:PackageType="5"
-  DTS:VersionBuild="54"
-  DTS:VersionGUID="{0918F5EC-063A-491D-9B91-AD63AED66AE3}">
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{B4709D3F-D248-494C-8C75-EC13DBD23AED}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -540,10 +540,6 @@
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDate]"
                           dataType="dbTimeStamp"
                           name="ChangeDate" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDetails]"
-                          dataType="nText"
-                          name="ChangeDetails" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -680,16 +676,6 @@
                           name="ClientID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClientName]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClientName]"
-                          length="100"
-                          lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClientName]"
-                          name="ClientName"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
@@ -721,40 +707,35 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalHours]"
-                          dataType="dbTime2"
+                          dataType="numeric"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalHours]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalHours]"
                           name="TotalHours"
+                          precision="18"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartTime]"
-                          dataType="dbTime2"
+                          dataType="numeric"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartTime]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartTime]"
                           name="StartTime"
+                          precision="10"
+                          scale="4"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndTime]"
-                          dataType="dbTime2"
+                          dataType="numeric"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EndTime]"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndTime]"
                           name="EndTime"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
-                          dataType="dbTimeStamp2"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
-                          lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
-                          name="CreatedDateTime"
-                          scale="7"
+                          precision="10"
+                          scale="4"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
@@ -781,11 +762,6 @@
                           dataType="i4"
                           name="ClientID" />
                         <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClientName]"
-                          dataType="wstr"
-                          length="100"
-                          name="ClientName" />
-                        <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                           dataType="wstr"
                           length="500"
@@ -802,21 +778,22 @@
                           name="Comments" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalHours]"
-                          dataType="dbTime2"
-                          name="TotalHours" />
+                          dataType="numeric"
+                          name="TotalHours"
+                          precision="10"
+                          scale="4" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartTime]"
-                          dataType="dbTime2"
-                          name="StartTime" />
+                          dataType="numeric"
+                          name="StartTime"
+                          precision="10"
+                          scale="4" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EndTime]"
-                          dataType="dbTime2"
-                          name="EndTime" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
-                          dataType="dbTimeStamp2"
-                          name="CreatedDateTime"
-                          scale="7" />
+                          dataType="numeric"
+                          name="EndTime"
+                          precision="10"
+                          scale="4" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -851,12 +828,6 @@
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClientID]"
                           name="ClientID" />
                         <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClientName]"
-                          dataType="wstr"
-                          length="100"
-                          lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClientName]"
-                          name="ClientName" />
-                        <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
                           dataType="wstr"
                           length="500"
@@ -876,25 +847,25 @@
                           name="Comments" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalHours]"
-                          dataType="dbTime2"
+                          dataType="numeric"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalHours]"
-                          name="TotalHours" />
+                          name="TotalHours"
+                          precision="10"
+                          scale="4" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StartTime]"
-                          dataType="dbTime2"
+                          dataType="numeric"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StartTime]"
-                          name="StartTime" />
+                          name="StartTime"
+                          precision="10"
+                          scale="4" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EndTime]"
-                          dataType="dbTime2"
+                          dataType="numeric"
                           lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EndTime]"
-                          name="EndTime" />
-                        <outputColumn
-                          refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
-                          dataType="dbTimeStamp2"
-                          lineageId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
-                          name="CreatedDateTime"
-                          scale="7" />
+                          name="EndTime"
+                          precision="10"
+                          scale="4" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -1248,10 +1219,6 @@
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDate]"
                           dataType="dbTimeStamp"
                           name="ChangeDate" />
-                        <externalMetadataColumn
-                          refId="Package\Sequence Container\Data Flow Task 1\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeDetails]"
-                          dataType="nText"
-                          name="ChangeDetails" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1361,12 +1328,11 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[LeaveType]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LeaveType]"
-                          length="255"
+                          length="50"
                           lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[LeaveType]"
                           name="LeaveType"
                           truncationRowDisposition="FailComponent" />
@@ -1399,23 +1365,21 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[ApprovalObtained]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ApprovalObtained]"
-                          length="255"
+                          length="10"
                           lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[ApprovalObtained]"
                           name="ApprovalObtained"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[SickNote]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SickNote]"
-                          length="255"
+                          length="10"
                           lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[SickNote]"
                           name="SickNote"
                           truncationRowDisposition="FailComponent" />
@@ -1432,9 +1396,8 @@
                           name="ConsultantID" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LeaveType]"
-                          codePage="1252"
-                          dataType="str"
-                          length="255"
+                          dataType="wstr"
+                          length="50"
                           name="LeaveType" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
@@ -1450,15 +1413,13 @@
                           name="NumberOfDays" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ApprovalObtained]"
-                          codePage="1252"
-                          dataType="str"
-                          length="255"
+                          dataType="wstr"
+                          length="10"
                           name="ApprovalObtained" />
                         <externalMetadataColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SickNote]"
-                          codePage="1252"
-                          dataType="str"
-                          length="255"
+                          dataType="wstr"
+                          length="10"
                           name="SickNote" />
                       </externalMetadataColumns>
                     </output>
@@ -1479,9 +1440,8 @@
                           name="ConsultantID" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LeaveType]"
-                          codePage="1252"
-                          dataType="str"
-                          length="255"
+                          dataType="wstr"
+                          length="50"
                           lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LeaveType]"
                           name="LeaveType" />
                         <outputColumn
@@ -1501,16 +1461,14 @@
                           name="NumberOfDays" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ApprovalObtained]"
-                          codePage="1252"
-                          dataType="str"
-                          length="255"
+                          dataType="wstr"
+                          length="10"
                           lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ApprovalObtained]"
                           name="ApprovalObtained" />
                         <outputColumn
                           refId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SickNote]"
-                          codePage="1252"
-                          dataType="str"
-                          length="255"
+                          dataType="wstr"
+                          length="10"
                           lineageId="Package\Sequence Container\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SickNote]"
                           name="SickNote" />
                         <outputColumn
@@ -1583,7 +1541,7 @@
     design-time-name="Package\Sequence Container\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="152,41.6"
           Id="Package\Sequence Container\Data Flow Task\OLE DB Source"
@@ -1627,7 +1585,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1661,7 +1621,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1697,11 +1659,15 @@
     design-time-name="Package\Sequence Container\Data Flow Task 1">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="152,41.6"
           Id="Package\Sequence Container\Data Flow Task 1\OLE DB Source"
           TopLeft="63.4999991357327,12.4999998956919" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Sequence Container\Data Flow Task 1\OLE DB Destination"
+          TopLeft="58.500000551343,302.49999691546" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\Sequence Container\Data Flow Task 1\Derived Column"
@@ -1725,13 +1691,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Sequence Container\Data Flow Task 1\OLE DB Destination"
-          TopLeft="58.500000551343,302.49999691546" />
         <EdgeLayout
           Id="Package\Sequence Container\Data Flow Task 1.Paths[Derived Column Output]"
           TopLeft="144.00000026077,205.099998539686">
@@ -1751,7 +1715,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
