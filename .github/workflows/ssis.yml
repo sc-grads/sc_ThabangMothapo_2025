@@ -41,7 +41,7 @@ jobs:
      - name: Build SSIS Project
        shell: powershell
        run: |
-         $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\TimesheetMigration.dtproj"
+         $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigration.dtproj"
          $outputDir = "${{ runner.temp }}\SSISOutput"
          $config = "Development"
          if (-not (Test-Path $outputDir)) {
