@@ -18,7 +18,8 @@ jobs:
           Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
           Get-ChildItem -Path "${{ github.workspace }}" -Recurse
 
-      - name: 🔍 Debug:List all .dtproj files
+      - name: 🔍 Debug
+         user :List all .dtproj files
         shell: powershell
         run: |
           Write-Output "Searching for .dtproj files under workspace..."
