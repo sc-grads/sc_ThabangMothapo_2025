@@ -13,7 +13,11 @@
   DTS:PackageType="5"
   DTS:VersionBuild="60"
 <<<<<<< HEAD
+<<<<<<< HEAD
   DTS:VersionGUID="{03301A76-4D24-4EC6-8BB5-C5F8CE7FB923}">
+=======
+  DTS:VersionGUID="{B4709D3F-D248-494C-8C75-EC13DBD23AED}">
+>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0
 =======
   DTS:VersionGUID="{B4709D3F-D248-494C-8C75-EC13DBD23AED}">
 >>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0
