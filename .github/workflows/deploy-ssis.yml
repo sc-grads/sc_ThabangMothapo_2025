@@ -45,6 +45,29 @@ jobs:
           }
           Write-Output "All required tools found."
 
+      - name: Clean unused package references
+        shell: powershell
+        run: |
+          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\Integration Services Project1.dtproj"
+          [xml]$xml = Get-Content $projectFile
+          $pkgFiles = $xml.Project.Packages.PackageFile
+          $toRemove = @()
+
+          foreach ($pkg in $pkgFiles) {
+            $pkgPath = Join-Path (Split-Path $projectFile) $pkg.InnerText
+            if (-not (Test-Path $pkgPath)) {
+              Write-Output "Removing missing reference: $($pkg.InnerText)"
+              $toRemove += $pkg
+            }
+          }
+
+          foreach ($pkg in $toRemove) {
+            $null = $xml.Project.Packages.RemoveChild($pkg)
+          }
+
+          $xml.Save($projectFile)
+          Write-Output "Cleaned missing .dtsx references from .dtproj."
+
       - name: Build SSIS Project
         shell: powershell
         run: |
@@ -74,7 +97,6 @@ jobs:
             sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
           } else {
             Write-Output "Folder '$folderName' exists."
-          }
 
       - name: Deploy SSIS Project via stored procedure
         shell: powershell
@@ -93,21 +115,17 @@ jobs:
           $cmd = $conn.CreateCommand()
           $cmd.CommandText = "[catalog].[deploy_project]"
           $cmd.CommandType = [System.Data.CommandType]::StoredProcedure
-          $p1 = $cmd.Parameters.Add("@folder_name", [System.Data.SqlDbType]::NVarChar, 128)
-          $p1.Value = $folderName
-          $p2 = $cmd.Parameters.Add("@project_name", [System.Data.SqlDbType]::NVarChar, 128)
-          $p2.Value = $projectName
-          $p3 = $cmd.Parameters.Add("@project_stream", [System.Data.SqlDbType]::VarBinary, -1)
-          $p3.Value = $projectBytes
+          $cmd.Parameters.Add("@folder_name", [System.Data.SqlDbType]::NVarChar, 128).Value = $folderName
+          $cmd.Parameters.Add("@project_name", [System.Data.SqlDbType]::NVarChar, 128).Value = $projectName
+          $cmd.Parameters.Add("@project_stream", [System.Data.SqlDbType]::VarBinary, -1).Value = $projectBytes
+
           try {
             Write-Output "Deploying project..."
             $cmd.ExecuteNonQuery() | Out-Null
             Write-Output "Deployment succeeded!"
-          }
-          catch {
+          } catch {
             Write-Error "Deployment failed: $_"
             exit 1
-          }
-          finally {
+          } finally {
             $conn.Close()
           }
