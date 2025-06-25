@@ -1,6 +1,9 @@
 Create database Timesheet
 GO
 
+USE Timesheet
+GO
+
 CREATE TABLE Consultant (
     ConsultantID INT PRIMARY KEY IDENTITY(1,1),
     ConsultantName NVARCHAR(100) NOT NULL
@@ -49,7 +52,7 @@ CREATE TABLE AuditLog (
     RecordID INT NOT NULL,                  -- ID of the affected row
     ChangedBy NVARCHAR(100) NOT NULL,       -- Username or consultant name
     ChangeDate DATETIME DEFAULT GETDATE(),  -- Timestamp of the action
-    ChangeDetails NVARCHAR(MAX)             -- JSON or descriptive string of what changed
+  
 );
 CREATE TABLE ErrorLog (
     ErrorLogID INT PRIMARY KEY IDENTITY(1,1),
