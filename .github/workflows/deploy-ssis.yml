@@ -17,7 +17,6 @@ jobs:
           Write-Output "Workspace path: ${{ github.workspace }}"
           Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
           Get-ChildItem -Path "${{ github.workspace }}" -Recurse
-
       - name: Verify SSIS project file exists
         shell: powershell
         run: |
@@ -27,7 +26,6 @@ jobs:
             exit 1
           }
           Write-Output "Found SSIS project file at $projectPath"
-
       - name: Verify SSIS build tools exist
         shell: powershell
         run: |
@@ -44,31 +42,6 @@ jobs:
             exit 1
           }
           Write-Output "All required tools found."
-
-      - name: Clean missing package references from .dtproj
-        shell: powershell
-        run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\Integration Services Project1.dtproj"
-          [xml]$xml = Get-Content $projectFile
-          $projectDir = Split-Path $projectFile
-          $packages = $xml.Project.Packages.PackageFile
-          $toRemove = @()
-
-          foreach ($pkg in $packages) {
-            $fullPath = Join-Path $projectDir $pkg.InnerText
-            if (-not (Test-Path $fullPath)) {
-              Write-Output "❌ Removing missing package: $($pkg.InnerText)"
-              $toRemove += $pkg
-            }
-          }
-
-          foreach ($pkg in $toRemove) {
-            $null = $xml.Project.Packages.RemoveChild($pkg)
-          }
-
-          $xml.Save($projectFile)
-          Write-Output "✅ Cleaned up missing packages."
-
       - name: Build SSIS Project
         shell: powershell
         run: |
@@ -84,8 +57,7 @@ jobs:
             Write-Error "Build failed: .ispac file not found at $ispacPath"
             exit 1
           }
-          Write-Output "✅ Build succeeded: $ispacPath"
-
+          Write-Output "Build succeeded: $ispacPath"
       - name: Create SSIS Catalog Folder if missing
         shell: powershell
         run: |
@@ -94,12 +66,11 @@ jobs:
           $folderName = "TimesheetMigration"
           $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT 1 FROM catalog.folders WHERE name = '$folderName'" -E -h -1
           if ([string]::IsNullOrEmpty($folderExists)) {
-            Write-Output "📁 Folder '$folderName' does not exist. Creating..."
+            Write-Output "Folder '$folderName' does not exist. Creating..."
             sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
           } else {
-            Write-Output "📁 Folder '$folderName' already exists."
+            Write-Output "Folder '$folderName' exists."
           }
-
       - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
@@ -109,7 +80,7 @@ jobs:
           $folderName = "TimesheetMigration"
           $projectName = "Integration Services Project1"
           Add-Type -AssemblyName System.Data
-          Write-Output "📦 Reading .ispac file from $ispacPath"
+          Write-Output "Reading .ispac file from $ispacPath"
           $projectBytes = [System.IO.File]::ReadAllBytes($ispacPath)
           $connString = "Data Source=$sqlServer;Initial Catalog=$catalogDB;Integrated Security=SSPI;"
           $conn = New-Object System.Data.SqlClient.SqlConnection $connString
@@ -117,16 +88,21 @@ jobs:
           $cmd = $conn.CreateCommand()
           $cmd.CommandText = "[catalog].[deploy_project]"
           $cmd.CommandType = [System.Data.CommandType]::StoredProcedure
-          $cmd.Parameters.Add("@folder_name", [System.Data.SqlDbType]::NVarChar, 128).Value = $folderName
-          $cmd.Parameters.Add("@project_name", [System.Data.SqlDbType]::NVarChar, 128).Value = $projectName
-          $cmd.Parameters.Add("@project_stream", [System.Data.SqlDbType]::VarBinary, -1).Value = $projectBytes
+          $p1 = $cmd.Parameters.Add("@folder_name", [System.Data.SqlDbType]::NVarChar, 128)
+          $p1.Value = $folderName
+          $p2 = $cmd.Parameters.Add("@project_name", [System.Data.SqlDbType]::NVarChar, 128)
+          $p2.Value = $projectName
+          $p3 = $cmd.Parameters.Add("@project_stream", [System.Data.SqlDbType]::VarBinary, -1)
+          $p3.Value = $projectBytes
           try {
-            Write-Output "🚀 Deploying project..."
+            Write-Output "Deploying project..."
             $cmd.ExecuteNonQuery() | Out-Null
-            Write-Output "✅ Deployment succeeded!"
-          } catch {
-            Write-Error "❌ Deployment failed: $_"
+            Write-Output "Deployment succeeded!"
+          }
+          catch {
+            Write-Error "Deployment failed: $_"
             exit 1
-          } finally {
+          }
+          finally {
             $conn.Close()
           }
