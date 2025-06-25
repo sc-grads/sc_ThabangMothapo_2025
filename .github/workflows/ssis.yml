@@ -47,7 +47,7 @@ jobs:
          if (-not (Test-Path $outputDir)) {
            New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
          }
-& "C:\SSISDevOpsTools\SSISBuild.exe" -p:"$projectFile" -o:"$outputDir" -c:"$config" -l:DIAG
+         & "C:\SSISDevOpsTools\SSISBuild.exe" -p:"$projectFile" -o:"$outputDir" -c:"$config" -l:DIAG
          $ispacPath = Join-Path $outputDir "$config\Integration Services Project1.ispac"
          if (-not (Test-Path $ispacPath)) {
            Write-Error "Build failed: .ispac file not found at $ispacPath"
