@@ -33,17 +33,6 @@ jobs:
           )
         shell: cmd
  
-      - name: Build SSIS Package
-        run: |
-          cd /d "%GITHUB_WORKSPACE%"
-          C:\SSISDevOpsTools\SSISBuild.exe -p:"HandsOnProject\Timesheets\Integration Services Project1.dtproj" -o:build -c:Development -l:build.log
-          if not exist "Timesheets\build\Development\Integration Services Project1.ispac" (
-            echo "::error::Build failed!"
-            type build.log || echo "No build log available"
-            exit /b 1
-          )
-        shell: cmd
- 
       - name: Deploy to SQL Server
         run: |
           cd /d "%GITHUB_WORKSPACE%"
