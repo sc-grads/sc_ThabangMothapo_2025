@@ -18,25 +18,25 @@ jobs:
           Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
           Get-ChildItem -Path "${{ github.workspace }}" -Recurse
 
-      - name: 🔍 Debug
+      - name:  Debug
          user :List all .dtproj files
         shell: powershell
         run: |
           Write-Output "Searching for .dtproj files under workspace..."
           Get-ChildItem -Path "${{ github.workspace }}" -Filter *.dtproj -Recurse
 
-      - name: ✅ Verify SSIS project file exists
+      - name:  Verify SSIS project file exists
         shell: powershell
         run: |
           $projectPath = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackage"
-          $dtprojFile = "TimesheetMigration.dtproj"
+          $dtprojFile = "$projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\TimesheetMigration.dtproj"
           if (-not (Test-Path "$projectPath\$dtprojFile")) {
             Write-Error "SSIS project file not found at: $projectPath\$dtprojFile"
             exit 1
           }
           Write-Output "Found SSIS project file at $projectPath\$dtprojFile"
 
-      - name: ✅ Verify SSIS build tools exist
+      - name:  Verify SSIS build tools exist
         shell: powershell
         run: |
           if (-not (Test-Path "C:\SSISDevOpsTools\SSISBuild.exe")) {
