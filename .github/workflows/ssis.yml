@@ -28,7 +28,7 @@ jobs:
       - name:  Verify SSIS project file exists
         shell: powershell
         run: |
-          $projectPath = "${{ github.workspace }}\HandsOnProject\Timesheets"
+          $projectPath = "${{ github.workspace }}\HandsOnProject\Timesheets\TimesheetMigration.dtproj"
           $dtprojFile = "TimesheetMigration.dtproj"
           if (-not (Test-Path "$projectPath\$dtprojFile")) {
             Write-Error "SSIS project file not found at: $projectPath\$dtprojFile"
@@ -70,7 +70,7 @@ jobs:
           }
           Write-Output "Build succeeded: $ispacPath"
 
-      - name: 📁 Create SSIS Catalog Folder if missing
+      - name: Create SSIS Catalog Folder if missing
         shell: powershell
         run: |
           $sqlServer = "SAMBE202519"
@@ -84,7 +84,7 @@ jobs:
             Write-Output "Folder '$folderName' exists."
           }
 
-      - name: 🚀 Deploy SSIS Project via stored procedure
+      - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
           $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigration.ispac"
