@@ -85,7 +85,7 @@ jobs:
           $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigrationnew.ispac"
           $sqlServer = "SAMBE202519"
           $catalogDB = "SSISDB"
-          $folderName = "TimesheetMigration"
+          $folderName = "TimesheetMigrationnew"
           $projectName = "TimesheetMigrationnew"
           Add-Type -AssemblyName System.Data
           Write-Output "Reading .ispac file from $ispacPath"
