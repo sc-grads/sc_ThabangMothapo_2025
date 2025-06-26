@@ -28,8 +28,8 @@ jobs:
       - name:  Verify SSIS project file exists
         shell: powershell
         run: |
-          $projectPath = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackage"
-          $dtprojFile = "$projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\TimesheetMigration.dtproj"
+          $projectPath = "${{ github.workspace }}\HandsOnProject\Timesheets"
+          $dtprojFile = "TimesheetMigration.dtproj"
           if (-not (Test-Path "$projectPath\$dtprojFile")) {
             Write-Error "SSIS project file not found at: $projectPath\$dtprojFile"
             exit 1
