@@ -36,7 +36,7 @@ jobs:
       - name: Deploy to SQL Server
         run: |
           cd /d "%GITHUB_WORKSPACE%"
-          C:\SSISDevOpsTools\SSISDeploy.exe -s:"Timesheets\build\Development\Integration Services Project1.ispac" ^
+          C:\SSISDevOpsTools\SSISDeploy.exe -s:"HandsOnProject\Timesheets\Integration Services Project1.ispac" ^
             -d:CATALOG;"/SSISDB/TimesheetMigration/Integration Services Project1";SAMBE202519 ^
             -authType:WIN ^
             -l:deploy.log
