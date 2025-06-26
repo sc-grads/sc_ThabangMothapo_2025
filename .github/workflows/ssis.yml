@@ -38,7 +38,7 @@ jobs:
       - name: Verify SSIS project file exists
         shell: powershell
         run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigration.dtproj"
+          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigrationNew.dtproj"
           if (-not (Test-Path "$projectFile")) {
             Write-Error "SSIS project file not found at: $projectFile"
             exit 1
@@ -65,14 +65,14 @@ jobs:
       - name: 🛠Build SSIS Project
         shell: powershell
         run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigration.dtproj"
+          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigrationNew.dtproj"
           $outputDir = "${{ runner.temp }}\SSISOutput"
           $config = "Development"
           if (-not (Test-Path $outputDir)) {
             New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
           }
           & "C:\SSISDevOpsTools\SSISBuild.exe" -p:"$projectFile" -o:"$outputDir" -c:"$config" -l:DIAG
-          $ispacPath = Join-Path $outputDir "$config\TimesheetMigration.ispac"
+          $ispacPath = Join-Path $outputDir "$config\TimesheetMigrationNew.ispac"
           if (-not (Test-Path $ispacPath)) {
             Write-Error "Build failed: .ispac file not found at $ispacPath"
             exit 1
@@ -82,11 +82,11 @@ jobs:
       - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
-          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigration.ispac"
+          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigrationNew.ispac"
           $sqlServer = "SAMBE202519"
           $catalogDB = "SSISDB"
           $folderName = "TimesheetMigration"
-          $projectName = "TimesheetMigration"
+          $projectName = "TimesheetMigrationNew"
           Add-Type -AssemblyName System.Data
           Write-Output "Reading .ispac file from $ispacPath"
           $projectBytes = [System.IO.File]::ReadAllBytes($ispacPath)
