@@ -5,21 +5,21 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="SAMBE202519"
   DTS:CreatorName="SAMBE202519\Thabang Mothapo"
-  DTS:DTSID="{2FB80AEA-F7DB-44BA-9385-9B531BCFBE26}"
+  DTS:DTSID="{F88EC6BB-2E5A-412B-84F1-FAAD8C2C7CF4}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Package2"
   DTS:PackageType="5"
   DTS:VersionBuild="2"
-  DTS:VersionGUID="{8EE6E556-2DE8-46D0-A033-FFC511DDEC7B}">
+  DTS:VersionGUID="{59E18F40-ABE7-4658-AC8A-A8C3225BE4CA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{A937337D-0074-46E2-8D43-209EFEDD8259}"
+      DTS:DTSID="{DACAA987-E296-4BDF-B6C6-96B22B654AA5}"
       DTS:ObjectName="Excel Connection Manager 3">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -31,20 +31,20 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{693C2EDA-AE4A-40C4-8F01-17C0D289E3B3}"
+      DTS:DTSID="{304983D9-124D-41FA-AF62-079AE3949587}"
       DTS:ObjectName="LocalHost.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{693C2EDA-AE4A-40C4-8F01-17C0D289E3B3}LocalHost.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{304983D9-124D-41FA-AF62-079AE3949587}LocalHost.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{0AB6A42C-760D-4FE6-B29F-4D36E8254981}"
+      DTS:DTSID="{0ADABE96-E6AF-4205-84B4-4695A9C21481}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ConsultantID">
@@ -53,7 +53,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{0C4B1549-A25F-4E31-B7AF-F03E7C88F2A9}"
+      DTS:DTSID="{DF72D922-FF14-422C-8A31-A5A04025BCFF}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Error Associated with ConsultantID &quot; + (DT_WSTR, 12)@[User::ConsultantID]"
       DTS:IncludeInDebugDump="2345"
@@ -64,7 +64,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{1F6E5363-E45A-4E27-90B0-64297E6B6F38}"
+      DTS:DTSID="{E5E37F8B-E253-45D3-B2D3-950EAF5E0CEB}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ErrorTime">
@@ -73,7 +73,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{36E9DC60-D262-4774-8A28-0474DEB828FB}"
+      DTS:DTSID="{106DFE09-7B3D-4A6E-818C-32F739042B0A}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="TableName">
@@ -86,7 +86,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{13550490-05cc-46ba-87e5-46e35e35b576}"
+      DTS:DTSID="{3B2C61B8-6CDA-47E4-8217-CC974A8800FF}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"

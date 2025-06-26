@@ -5,21 +5,21 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="SAMBE202519"
   DTS:CreatorName="SAMBE202519\Thabang Mothapo"
-  DTS:DTSID="{2601DB9B-5151-4B36-9E61-24FCD40D1487}"
+  DTS:DTSID="{7A4F9A9C-651B-4899-A2C3-CE5C81E5B286}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:VersionBuild="2"
-  DTS:VersionGUID="{D69E6A65-24F6-4D94-BBEB-4EF1F3CC147C}">
+  DTS:VersionGUID="{80699F14-FA6D-4F3C-9FAF-89FD14F23825}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{C8B0BE58-9072-4859-B200-0348910B0D2F}"
+      DTS:DTSID="{88529F10-2A7B-46B5-B4A5-AFF678D7E51E}"
       DTS:ObjectName="Excel Connection Manager 2">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -31,20 +31,20 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{5C575323-09D4-413F-85BD-7A3B3296A5A5}"
+      DTS:DTSID="{D1AB6BC9-5D12-4B41-BE99-5C408CD61C60}"
       DTS:ObjectName="LocalHost.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ExtractingTimesheet-{5C575323-09D4-413F-85BD-7A3B3296A5A5}LocalHost.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ExtractingTimesheet-{D1AB6BC9-5D12-4B41-BE99-5C408CD61C60}LocalHost.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{4EAC1869-7165-41DD-B937-B86527340B6F}"
+      DTS:DTSID="{E32EB8B7-0196-4AF0-B799-0DA87EBFC81C}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="RIGHT(&#xA;  LEFT(@[User::FilePath], LEN(@[User::FilePath]) - FINDSTRING(REVERSE(@[User::FilePath]), &quot;\\&quot;, 1)),&#xA;  FINDSTRING(REVERSE(LEFT(@[User::FilePath], LEN(@[User::FilePath]) - FINDSTRING(REVERSE(@[User::FilePath]), &quot;\\&quot;, 1))), &quot;\\&quot;, 1) - 1&#xA;)"
       DTS:IncludeInDebugDump="2345"
@@ -55,7 +55,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{A03C5246-4DFB-4DE7-A338-6B708A4AAD49}"
+      DTS:DTSID="{D9812207-9A63-4E6C-9391-9AA621543844}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ErrorMessage">
@@ -64,7 +64,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{1A44C747-B8FC-4202-BE9A-A801FA0ABE85}"
+      DTS:DTSID="{6A890DFA-A2F3-4A66-85F0-F0C9AF304B9A}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="FilePath">
@@ -73,7 +73,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{D3924B15-B30A-4D03-8637-759C2F8B7BA7}"
+      DTS:DTSID="{72DC6942-2A15-4F8D-95F0-5B7CAB8CB8FE}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="FolderPath">
@@ -82,7 +82,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{39B47C8A-D958-4D36-A043-7C5C1A7EF180}"
+      DTS:DTSID="{6E42D1E3-601E-426E-972A-C3B00DE19AA1}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="TableName">
@@ -95,13 +95,13 @@
       DTS:refId="Package\Foreach Loop Container"
       DTS:CreationName="STOCK:FOREACHLOOP"
       DTS:Description="Foreach Loop Container"
-      DTS:DTSID="{6d136e06-bb84-4a1a-9f02-6af5daad489a}"
+      DTS:DTSID="{D3C4AAAF-BCBB-4137-A026-4D3296B98E66}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
       DTS:ObjectName="Foreach Loop Container">
       <DTS:ForEachEnumerator
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
-        DTS:DTSID="{ac1c27c6-45e3-4428-b8ee-786d6b25ace4}"
+        DTS:DTSID="{49C126F0-4A88-46AA-A152-C3FA4B0CDBA1}"
         DTS:ObjectName="{C0ACE7B1-404B-46AC-9DDE-56A44D0E9928}">
         <DTS:PropertyExpression
           DTS:Name="Directory">@[User::FolderPath]</DTS:PropertyExpression>
@@ -125,7 +125,7 @@
           DTS:CreationName="Microsoft.Pipeline"
           DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{04ee048b-7448-4d1e-8d71-430f5bb6c828}"
+          DTS:DTSID="{E7E71DFC-61FE-4A0C-8B4F-968181C03507}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
@@ -1360,19 +1360,19 @@ where [refTable].[ConsultantName] = ?</property>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{ed35e6e6-751a-4cd2-86be-f3e8b61fb3e6}"
+          DTS:DTSID="{4D2B08DC-B0FF-405A-B2F4-8FD964E3E2AE}"
           DTS:ObjectName="{4EDEA9F0-E49F-4850-8731-58C1902C685C}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::FolderPath" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{6017b84c-90a7-4aef-b1bf-35be47852dca}"
+          DTS:DTSID="{E3557C3C-C030-4E77-8937-CA8CAEFAC176}"
           DTS:ObjectName="{7C5D51AD-3ED6-4C19-9502-A308747499BF}"
           DTS:ValueIndex="1"
           DTS:VariableName="User::FilePath" />
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{950c5676-6526-4490-98e0-79eb2839f4f2}"
+          DTS:DTSID="{F7104021-9A96-4D1A-9F6E-07918E240BE4}"
           DTS:ObjectName="{3DDBE34C-4AE3-4C53-A43E-6EFCE9F5E7AD}"
           DTS:ValueIndex="2"
           DTS:VariableName="User::ConsultantName" />

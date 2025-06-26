@@ -5,21 +5,21 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="SAMBE202519"
   DTS:CreatorName="SAMBE202519\Thabang Mothapo"
-  DTS:DTSID="{E545636C-2D1B-4D44-8D15-927AFC6D8762}"
+  DTS:DTSID="{9D82809E-9EA1-46B6-B6D6-B6EBFE22A468}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:VersionBuild="1"
-  DTS:VersionGUID="{484EF427-82D2-429B-903F-AF7FF4EB83B3}">
+  DTS:VersionGUID="{ECDBDCDD-9551-4528-ACDC-9768E066FFEE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{44522A42-A77B-4343-BB69-B1BC14621420}"
+      DTS:DTSID="{02231802-C661-4BA7-843C-772BE26F5BB4}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -31,13 +31,13 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{E3298556-CE99-48D9-B5FE-13B2A1F008F4}"
+      DTS:DTSID="{AB704C08-1D8E-4035-946E-AD9C173D4E6E}"
       DTS:ObjectName="LocalHost.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ExtractingClientData-{E3298556-CE99-48D9-B5FE-13B2A1F008F4}LocalHost.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ExtractingClientData-{AB704C08-1D8E-4035-946E-AD9C173D4E6E}LocalHost.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -47,7 +47,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{2b070fb9-6d00-4887-b340-41111f22159f}"
+      DTS:DTSID="{5F628C9A-A035-44A1-AD81-5629B2D49772}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"
