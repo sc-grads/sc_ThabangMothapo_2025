@@ -1,104 +1,77 @@
-name: Deploy SSIS Packages to SQL Server
+name: SSIS Deployment (DEBUGGING)
+ 
 on:
- workflow_dispatch:
+  workflow_dispatch:
+ 
 jobs:
- deploy-ssis:
-   runs-on: self-hosted
-   steps:
-     - name: Checkout code
-       uses: actions/checkout@v4
-     - name: Debug workspace and user
-       shell: powershell
-       run: |
-         Write-Output "Workspace path: ${{ github.workspace }}"
-         Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
-         Get-ChildItem -Path "${{ github.workspace }}" -Recurse
-     - name: Verify SSIS project file exists
-       shell: powershell
-       run: |
-         $projectPath = "${{ github.workspace }}\HandsOnProject\Timesheets"
-         if (-not (Test-Path "$projectPath\Integration Services Project1.dtproj")) {
-           Write-Error "SSIS project file not found at: $projectPath"
-           exit 1
-         }
-         Write-Output "Found SSIS project file at $projectPath"
-     - name: Verify SSIS build tools exist
-       shell: powershell
-       run: |
-         if (-not (Test-Path "C:\SSISDevOpsTools\SSISBuild.exe")) {
-           Write-Error "SSISBuild.exe not found in C:\SSISDevOpsTools"
-           exit 1
-         }
-         if (-not (Test-Path "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\ISDeploymentWizard.exe")) {
-           Write-Error "ISDeploymentWizard.exe not found"
-           exit 1
-         }
-         if (-not (Get-Command sqlcmd.exe -ErrorAction SilentlyContinue)) {
-           Write-Error "sqlcmd.exe not found"
-           exit 1
-         }
-         Write-Output "All required tools found."
-     - name: Build SSIS Project
-       shell: powershell
-       run: |
-         $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\Integration Services Project1.dtproj"
-         $outputDir = "${{ runner.temp }}\SSISOutput"
-         $config = "Development"
-         if (-not (Test-Path $outputDir)) {
-           New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
-         }
-          & "C:\SSISDevOpsTools\SSISBuild.exe" -p:"$projectFile" -o:"$outputDir" -c:"$config" -l:DIAG
-         $ispacPath = Join-Path $outputDir "$config\Integration Services Project1.ispac"
-         if (-not (Test-Path $ispacPath)) {
-           Write-Error "Build failed: .ispac file not found at $ispacPath"
-           exit 1
-         }
-         Write-Output "Build succeeded: $ispacPath"
-     - name: Create SSIS Catalog Folder if missing
-       shell: powershell
-       run: |
-         $sqlServer = "SAMBE202519"
-         $catalogDB = "SSISDB"
-         $folderName = "TimesheetMigration"
-         $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT 1 FROM catalog.folders WHERE name = '$folderName'" -E -h -1
-         if ([string]::IsNullOrEmpty($folderExists)) {
-           Write-Output "Folder '$folderName' does not exist. Creating..."
-           sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
-         } else {
-           Write-Output "Folder '$folderName' exists."
-         }
-     - name: Deploy SSIS Project via stored procedure
-       shell: powershell
-       run: |
-         $ispacPath = "${{ runner.temp }}\SSISOutput\Development\Integration Services Project1.ispac"
-         $sqlServer = "SAMBE202519"
-         $catalogDB = "SSISDB"
-         $folderName = "TimesheetMigration"
-         $projectName = "Integration Services Project1"
-         Add-Type -AssemblyName System.Data
-         Write-Output "Reading .ispac file from $ispacPath"
-         $projectBytes = [System.IO.File]::ReadAllBytes($ispacPath)
-         $connString = "Data Source=$sqlServer;Initial Catalog=$catalogDB;Integrated Security=SSPI;"
-         $conn = New-Object System.Data.SqlClient.SqlConnection $connString
-         $conn.Open()
-         $cmd = $conn.CreateCommand()
-         $cmd.CommandText = "[catalog].[deploy_project]"
-         $cmd.CommandType = [System.Data.CommandType]::StoredProcedure
-         $p1 = $cmd.Parameters.Add("@folder_name", [System.Data.SqlDbType]::NVarChar, 128)
-         $p1.Value = $folderName
-         $p2 = $cmd.Parameters.Add("@project_name", [System.Data.SqlDbType]::NVarChar, 128)
-         $p2.Value = $projectName
-         $p3 = $cmd.Parameters.Add("@project_stream", [System.Data.SqlDbType]::VarBinary, -1)
-         $p3.Value = $projectBytes
-         try {
-           Write-Output "Deploying project..."
-           $cmd.ExecuteNonQuery() | Out-Null
-           Write-Output "Deployment succeeded!"
-         }
-         catch {
-           Write-Error "Deployment failed: $_"
-           exit 1
-         }
-         finally {
-           $conn.Close()
-         }
+  build-and-deploy:
+    runs-on: self-hosted
+    environment: local-dev
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Verify SSIS DevOps Tools
+        run: |
+          if not exist "C:\SSISDevOpsTools\SSISBuild.exe" (
+            echo "::error::SSISBuild.exe not found in C:\ssis-tools! Please install SSIS DevOps Tools manually from https://www.microsoft.com/download/details.aspx?id=105224"
+            exit /b 1
+          )
+          if not exist "C:\SSISDevOpsTools\SSISDeploy.exe" (
+            echo "::error::SSISDeploy.exe not found in C:\SSISDevOpsTools! Please install SSIS DevOps Tools manually from https://www.microsoft.com/download/details.aspx?id=105224"
+            exit /b 1
+          )
+          echo "SSIS DevOps Tools found in C:\ssis-tools"
+        shell: cmd
+ 
+      - name: Validate SSIS project
+        run: |
+          if not exist "%GITHUB_WORKSPACE%\HandsOnProject\Timesheets\Integration Services Project1.dtproj" (
+            echo "::error::SSIS project file not found!"
+            exit /b 1
+          )
+        shell: cmd
+ 
+      - name: Build SSIS Package
+        run: |
+          cd /d "%GITHUB_WORKSPACE%"
+          C:\SSISDevOpsTools\SSISBuild.exe -p:"HandsOnProject\Timesheets\Integration Services Project1.dtproj" -o:build -c:Development -l:build.log
+          if not exist "Timesheets\build\Development\Integration Services Project1.ispac" (
+            echo "::error::Build failed!"
+            type build.log || echo "No build log available"
+            exit /b 1
+          )
+        shell: cmd
+ 
+      - name: Deploy to SQL Server
+        run: |
+          cd /d "%GITHUB_WORKSPACE%"
+          C:\SSISDevOpsTools\SSISDeploy.exe -s:"Timesheets\build\Development\Integration Services Project1.ispac" ^
+            -d:CATALOG;/SSISDB/TimesheetMigration/Integration Services Project1;SAMBE202519 ^
+            -authType:WIN ^
+            -l:deploy.log
+          if %ERRORLEVEL% neq 0 (
+            echo "::error::Deployment failed!"
+            type deploy.log || echo "No deploy log available"
+            exit /b 1
+          )
+        shell: cmd
+ 
+      - name: Verify Deployment
+        run: |
+          sqlcmd -S SAMBE202519 -E -Q "SELECT name FROM SSISDB.catalog.projects WHERE name = 'Integration Services Project1'"
+          if %ERRORLEVEL% neq 0 (
+            echo "::error::Verification failed!"
+            exit /b 1
+          )
+        shell: cmd
+ 
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-artifacts
+          path: |
+          
+            %GITHUB_WORKSPACE%\build.log
+            %GITHUB_WORKSPACE%\deploy.log
