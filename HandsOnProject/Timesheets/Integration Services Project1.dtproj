@@ -30,12 +30,14 @@
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
+<<<<<<< HEAD
+=======
           <SSIS:Package SSIS:Name="ExtractConsultant.dtsx" SSIS:EntryPoint="1" />
          
          
+>>>>>>> 85b6165ae05a3081fbcd79cda6fbe96962db5507
           <SSIS:Package SSIS:Name="AuditLog.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Package1.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Package2.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="ExtractingTimesheet (1).dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="ExtractingClientData (1).dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Leave (1).dtsx" SSIS:EntryPoint="1" />
