@@ -18,7 +18,7 @@ jobs:
           Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
           Get-ChildItem -Path "${{ github.workspace }}" -Recurse
 
-      - name: 🔍 List all .dtproj files under workspace
+      - name: List all .dtproj files under workspace
         shell: powershell
         run: |
           Write-Output "Searching for .dtproj files..."
@@ -26,7 +26,7 @@ jobs:
             Write-Output $_.FullName
           }
 
-      - name: 🔍 List all .ispac files under temp directory
+      - name: List all .ispac files under temp directory
         shell: powershell
         run: |
           Write-Output "Searching for .ispac files in runner temp directory..."
@@ -35,7 +35,7 @@ jobs:
             Write-Output $_.FullName
           }
 
-      - name: ✅ Verify SSIS project file exists
+      - name: Verify SSIS project file exists
         shell: powershell
         run: |
           $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigration.dtproj"
@@ -45,7 +45,7 @@ jobs:
           }
           Write-Output "Found SSIS project file at $projectFile"
 
-      - name: ✅ Verify SSIS build tools exist
+      - name: Verify SSIS build tools exist
         shell: powershell
         run: |
           if (-not (Test-Path "C:\SSISDevOpsTools\SSISBuild.exe")) {
@@ -62,10 +62,10 @@ jobs:
           }
           Write-Output "All required tools found."
 
-      - name: 🛠️ Build SSIS Project
+      - name: 🛠Build SSIS Project
         shell: powershell
         run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackage\TimesheetMigration.dtproj"
+          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigration.dtproj"
           $outputDir = "${{ runner.temp }}\SSISOutput"
           $config = "Development"
           if (-not (Test-Path $outputDir)) {
@@ -79,7 +79,7 @@ jobs:
           }
           Write-Output "Build succeeded: $ispacPath"
 
-      - name: 🚀 Deploy SSIS Project via stored procedure
+      - name: Deploy SSIS Project via stored procedure
         shell: powershell
         run: |
           $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigration.ispac"
