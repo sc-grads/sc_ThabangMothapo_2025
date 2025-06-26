@@ -18,13 +18,24 @@ jobs:
           Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
           Get-ChildItem -Path "${{ github.workspace }}" -Recurse
 
-      - name:  List all .dtproj files
+      - name: 🔍 List all .dtproj files under workspace
         shell: powershell
         run: |
-          Write-Output "Searching for .dtproj files under workspace..."
-          Get-ChildItem -Path "${{ github.workspace }}" -Filter *.dtproj -Recurse
+          Write-Output "Searching for .dtproj files..."
+          Get-ChildItem -Path "${{ github.workspace }}" -Filter *.dtproj -Recurse | ForEach-Object {
+            Write-Output $_.FullName
+          }
 
-      - name:  Verify SSIS project file exists
+      - name: 🔍 List all .ispac files under temp directory
+        shell: powershell
+        run: |
+          Write-Output "Searching for .ispac files in runner temp directory..."
+          $tempDir = "${{ runner.temp }}"
+          Get-ChildItem -Path $tempDir -Filter *.ispac -Recurse | ForEach-Object {
+            Write-Output $_.FullName
+          }
+
+      - name: ✅ Verify SSIS project file exists
         shell: powershell
         run: |
           $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackage\TimesheetMigration.dtproj"
@@ -34,7 +45,7 @@ jobs:
           }
           Write-Output "Found SSIS project file at $projectFile"
 
-      - name:  Verify SSIS build tools exist
+      - name: ✅ Verify SSIS build tools exist
         shell: powershell
         run: |
           if (-not (Test-Path "C:\SSISDevOpsTools\SSISBuild.exe")) {
@@ -54,7 +65,7 @@ jobs:
       - name: 🛠️ Build SSIS Project
         shell: powershell
         run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\Integration Services Project1.dtproj"
+          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackage\TimesheetMigration.dtproj"
           $outputDir = "${{ runner.temp }}\SSISOutput"
           $config = "Development"
           if (-not (Test-Path $outputDir)) {
@@ -67,20 +78,6 @@ jobs:
             exit 1
           }
           Write-Output "Build succeeded: $ispacPath"
-
-      - name: 📁 Create SSIS Catalog Folder if missing
-        shell: powershell
-        run: |
-          $sqlServer = "SAMBE202519"
-          $catalogDB = "SSISDB"
-          $folderName = "TimesheetMigration"
-          $folderExists = sqlcmd -S $sqlServer -d $catalogDB -Q "SELECT 1 FROM catalog.folders WHERE name = '$folderName'" -E -h -1
-          if ([string]::IsNullOrEmpty($folderExists)) {
-            Write-Output "Folder '$folderName' does not exist. Creating..."
-            sqlcmd -S $sqlServer -d $catalogDB -Q "EXEC catalog.create_folder @folder_name = '$folderName'" -E
-          } else {
-            Write-Output "Folder '$folderName' exists."
-          }
 
       - name: 🚀 Deploy SSIS Project via stored procedure
         shell: powershell
