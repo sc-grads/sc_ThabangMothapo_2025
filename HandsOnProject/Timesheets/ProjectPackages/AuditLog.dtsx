@@ -5,27 +5,27 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="SAMBE202519"
   DTS:CreatorName="SAMBE202519\Thabang Mothapo"
-  DTS:DTSID="{61FB2EDF-A0F3-4E01-9CD0-5091265C37EF}"
+  DTS:DTSID="{43B295D2-C4A3-40DE-9C3F-C07C23AE2339}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="7177"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
   DTS:VersionBuild="2"
-  DTS:VersionGUID="{A3B99126-787C-468A-A5C2-CD79BE616D35}">
+  DTS:VersionGUID="{A313934C-D78C-438F-B954-97C59D9C3D96}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.TimesheetDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{FE361FE9-7362-468D-A857-EC30D995F823}"
+      DTS:DTSID="{A8017E9C-D236-4EDD-AAE7-6BE858B991BD}"
       DTS:ObjectName="LocalHost.TimesheetDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{FE361FE9-7362-468D-A857-EC30D995F823}LocalHost.TimesheetDB;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TimesheetDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{A8017E9C-D236-4EDD-AAE7-6BE858B991BD}LocalHost.TimesheetDB;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -35,7 +35,7 @@
       DTS:refId="Package\Sequence Container"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{BCAA94E3-C5E5-4566-8A76-43C20B564E78}"
+      DTS:DTSID="{2A16A06B-6A1F-4724-8AB2-F7AB926ED0CD}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="Sequence Container">
@@ -45,7 +45,7 @@
           DTS:refId="Package\Sequence Container\Data Flow Task"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{f577ce09-1a39-41e4-8b6c-3ae18505fa13}"
+          DTS:DTSID="{DFF10A6F-A8B0-4D16-BA11-1528087866CB}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
@@ -724,7 +724,7 @@
           DTS:refId="Package\Sequence Container\Data Flow Task 1"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{baa7f9a5-c78d-4f53-921c-d417a08b9945}"
+          DTS:DTSID="{0693E647-5A77-4279-93CF-64635F98EBA3}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task 1"
