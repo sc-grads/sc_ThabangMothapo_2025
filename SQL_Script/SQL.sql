@@ -59,6 +59,5 @@ CREATE TABLE ErrorLog (
     ErrorDate DATETIME DEFAULT GETDATE(),   -- When the error occurred
     ErrorMessage NVARCHAR(MAX) NOT NULL,
     TableName nvarchar(100) NOT NULL,
-    ConsultantID INT,                       -- Optional: related consultant, if applicable
-    FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID)
+                
 );
