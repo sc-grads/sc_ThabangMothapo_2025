@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/10/2025 10:02:35 AM"
@@ -11,13 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Leave"
   DTS:PackageType="5"
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
-  DTS:VersionBuild="78"
-  DTS:VersionGUID="{BEA93E0A-FC66-4611-8B1F-27EF5550D22B}">
-========
-  DTS:VersionBuild="83"
-  DTS:VersionGUID="{BCC18873-1CB3-4353-B19F-8BB31A2FE162}">
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
+  DTS:VersionBuild="85"
+  DTS:VersionGUID="{214ECC8A-9955-435A-A028-946258CA76F1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -189,6 +184,24 @@
       DTS:ObjectName="ErrorTime">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D5D52091-EA7A-49A3-AE97-CB772BC0B9C3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NumberOfDays">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B76165F2-321B-4827-B878-477F47F3A353}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SickNote">
+      <DTS:VariableValue
+        DTS:DataType="8">No</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -439,11 +452,6 @@
                       cachedLength="255"
                       cachedName="Sick Note"
                       lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[Number of days ]"
-                      cachedDataType="r8"
-                      cachedName="Number of days "
-                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -552,26 +560,6 @@
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
                           name="SourceInputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Sick Note]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]"
-                      dataType="r8"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]"
-                      name="Copy of Number of days"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -814,6 +802,51 @@
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
                           name="FriendlyExpression">@[User::ErrorMessage]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[number]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[number]"
+                      name="number"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::NumberOfDays]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::NumberOfDays]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Note]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Note]"
+                      name="Note"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::SickNote]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::SickNote]</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1153,11 +1186,11 @@
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ApprovalObtained]"
                       lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Approval Obtained]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Number of days]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Number of days ]"
                       cachedDataType="r8"
-                      cachedName="Copy of Number of days"
+                      cachedName="Number of days "
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberOfDays]"
-                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Number of days]" />
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Number of days ]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1322,18 +1355,14 @@
                       dataType="nText"
                       name="ErrorMessage" />
                     <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorTime]"
+                      dataType="dbTimeStamp"
+                      name="ErrorTime" />
+                    <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TableName]"
                       dataType="wstr"
                       length="100"
                       name="TableName" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDate]"
-                      dataType="dbTimeStamp"
-                      name="ErrorDate" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ConsultantID]"
-                      dataType="i4"
-                      name="ConsultantID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1419,7 +1448,6 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
           Size="140,41.6"
           Id="Package\Data Flow Task\Excel Source"
           TopLeft="101.166665159166,33.0000004023314" />
@@ -1427,11 +1455,6 @@
           Size="171.2,41.6"
           Id="Package\Data Flow Task\OLE DB Destination"
           TopLeft="619.944411612221,231.533333338433" />
-========
-          Size="180,41.6"
-          Id="Package\Data Flow Task\OLE DB Destination 1"
-          TopLeft="390.499978964529,375.833332616157" />
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
         <NodeLayout
           Size="156,41.6"
           Id="Package\Data Flow Task\Data Conversion"
@@ -1445,14 +1468,9 @@
           Id="Package\Data Flow Task\Derived Column"
           TopLeft="195.333329477244,358.981056172311" />
         <NodeLayout
-          Size="140,41.6"
-          Id="Package\Data Flow Task\Excel Source"
-          TopLeft="101.166665159166,33.0000004023314" />
-        <NodeLayout
           Size="153.6,41.6"
           Id="Package\Data Flow Task\Conditional Split"
           TopLeft="329.166656859219,218.247725059383" />
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Conditional Split Default Output]"
           TopLeft="482.766656859219,239.047725059383">
@@ -1485,16 +1503,10 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-2.02502887349925,-17.658203125,141.2278125,11.658203125"
+              BoundingBox="-2.02502887349921,-17.658203125,141.2278125,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-========
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="619.944411612221,231.533333338433" />
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Excel Source Output]"
           TopLeft="171.166665159166,74.6000004023314">
@@ -1526,9 +1538,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-50.8344716168941,46.3905288535654,35.6689453125,9.5732421875"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1562,122 +1572,12 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="25.0821910347376,-44.569958628758,35.6689453125,9.5732421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Data Conversion Output]"
-          TopLeft="105.166667237878,198.981058109462">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="166.566662239366,159.999998062849"
-              Start="0,0"
-              End="166.566662239366,152.499998062849">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,75.9999990314245" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,75.9999990314245"
-                    Point2="0,79.9999990314245"
-                    Point3="4,79.9999990314245" />
-                  <mssgle:LineSegment
-                    End="162.566662239366,79.9999990314245" />
-                  <mssgle:CubicBezierSegment
-                    Point1="162.566662239366,79.9999990314245"
-                    Point2="166.566662239366,79.9999990314245"
-                    Point3="166.566662239366,83.9999990314245" />
-                  <mssgle:LineSegment
-                    End="166.566662239366,152.499998062849" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="65.448858463433,84.9999990314245,35.6689453125,9.5732421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
-          Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="295.866662810577,358.981056172311">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="85.8333273819753,-99.1333311129278"
-              Start="0,0"
-              End="85.8333273819753,-91.6333311129278">
-========
-          Id="Package\Data Flow Task.Paths[Conditional Split Error Output]"
-          TopLeft="430.233323525886,259.847725059383">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="50.2666554386426,115.985607556774"
-              Start="0,0"
-              End="50.2666554386426,108.485607556774">
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
-                    End="0,-45.569958628758" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-45.569958628758"
-                    Point2="0,-49.569958628758"
-                    Point3="4,-49.569958628758" />
-                  <mssgle:LineSegment
-                    End="81.8333273819753,-49.569958628758" />
-                  <mssgle:CubicBezierSegment
-                    Point1="81.8333273819753,-49.569958628758"
-                    Point2="85.8333273819753,-49.569958628758"
-                    Point3="85.8333273819753,-53.569958628758" />
-                  <mssgle:LineSegment
-                    End="85.8333273819753,-91.6333311129278" />
-========
-                    End="0,43.1116797704834" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,43.1116797704834"
-                    Point2="0,47.1116797704834"
-                    Point3="4,47.1116797704834" />
-                  <mssgle:LineSegment
-                    End="46.2666554386426,47.1116797704834" />
-                  <mssgle:CubicBezierSegment
-                    Point1="46.2666554386426,47.1116797704834"
-                    Point2="50.2666554386426,47.1116797704834"
-                    Point3="50.2666554386426,51.1116797704834" />
-                  <mssgle:LineSegment
-                    End="50.2666554386426,108.485607556774" />
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Data Conversion Output]"
           TopLeft="105.166667237878,198.981058109462">
-========
-            <mssgm:EdgeLabel
-              BoundingBox="-40.5605785306787,52.1116797704834,131.3878125,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Conditional Split Default Output]"
-          TopLeft="482.766656859219,239.047725059383">
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1741,11 +1641,7 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
               BoundingBox="-40.5605785306787,52.1116797704834,131.3878125,11.609375"
-========
-              BoundingBox="-21.9103804359992,-17.658203125,180.998515625,11.658203125"
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1753,7 +1649,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
     design-time-name="Package\Data Flow Task\Excel Source">
     <Properties>
       <Property>
@@ -1763,9 +1658,6 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Flow Task\OLE DB Destination">
-========
-    design-time-name="Package\Data Flow Task\OLE DB Destination 1">
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1778,19 +1670,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-<<<<<<<< HEAD:HandsOnProject/Timesheets/Leave (1).dtsx
     design-time-name="Package\Data Flow Task\OLE DB Destination 1">
-========
-    design-time-name="Package\Data Flow Task\Excel Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination">
->>>>>>>> f108542faac0a18f61ebfdfaf8729f06454905a0:HandsOnProject/Timesheets/Extractingleave.dtsx
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

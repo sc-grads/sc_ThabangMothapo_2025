@@ -1,39 +1,39 @@
-Create database TimesheetDB
+CREATE DATABASE TimesheetDB;
 GO
 
-USE TimesheetDB
+USE TimesheetDB;
 GO
 
+-- Create Consultant table
 CREATE TABLE Consultant (
     ConsultantID INT PRIMARY KEY IDENTITY(1,1),
     ConsultantName NVARCHAR(100) NOT NULL
 );
 
--- Create Clients table
+-- Create Client table
 CREATE TABLE Client (
     ClientID INT PRIMARY KEY IDENTITY(1,1),
     ClientName NVARCHAR(100) NOT NULL
 );
 
--- Create Timesheets table
+-- Create Timesheet table (with TIME fields)
 CREATE TABLE Timesheet (
     TimesheetID INT PRIMARY KEY IDENTITY(1,1),
     ConsultantID INT NOT NULL,
     EntryDate DATE NOT NULL,
-    DayOfWeek NVARCHAR(20),
+    DayOfWeek NVARCHAR(255),
     ClientID INT,
     Description NVARCHAR(500),
-    BillingStatus NVARCHAR(20),
+    BillingStatus NVARCHAR(255),
     Comments NVARCHAR(1000),
-    TotalHours DECIMAL(10,4),
-    StartTime DECIMAL(10,4),
-    EndTime DECIMAL(10,4),
+    TotalHours TIME,             -- CHANGED to TIME
+    StartTime TIME,              -- CHANGED to TIME
+    EndTime TIME,                -- CHANGED to TIME
     FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID),
-    FOREIGN KEY (ClientID) REFERENCES Client(ClientID),
+    FOREIGN KEY (ClientID) REFERENCES Client(ClientID)
 );
 
-
--- Create Leaves table
+-- Create Leave table
 CREATE TABLE Leave (
     LeaveID INT PRIMARY KEY IDENTITY(1,1),
     ConsultantID INT NOT NULL,
@@ -45,19 +45,26 @@ CREATE TABLE Leave (
     SickNote NVARCHAR(10),
     FOREIGN KEY (ConsultantID) REFERENCES Consultant(ConsultantID)
 );
+
+-- Create AuditLog table
 CREATE TABLE AuditLog (
     AuditLogID INT PRIMARY KEY IDENTITY(1,1),
     TableName NVARCHAR(100) NOT NULL,
-    Action NVARCHAR(10) NOT NULL,           -- e.g., INSERT, UPDATE, DELETE
-    RecordID INT NOT NULL,                  -- ID of the affected row
-    ChangedBy NVARCHAR(100) NOT NULL,       -- Username or consultant name
-    ChangeDate DATETIME DEFAULT GETDATE(),  -- Timestamp of the action
-  
+    Action NVARCHAR(10) NOT NULL,
+    RecordID INT NOT NULL,
+    ChangedBy NVARCHAR(100) NOT NULL,
+    ChangeDate DATETIME DEFAULT GETDATE()
 );
+
+-- Create ErrorLog table
 CREATE TABLE ErrorLog (
     ErrorLogID INT PRIMARY KEY IDENTITY(1,1),
-    ErrorDate DATETIME DEFAULT GETDATE(),   -- When the error occurred
+    ErrorDate DATETIME DEFAULT GETDATE(),
     ErrorMessage NVARCHAR(MAX) NOT NULL,
+<<<<<<< HEAD
+    TableName NVARCHAR(100) NOT NULL
+=======
     TableName nvarchar(100) NOT NULL,
                 
+>>>>>>> 307d603c608ec614ab30b8de88a74c97d419021f
 );
