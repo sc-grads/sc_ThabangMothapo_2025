@@ -61,5 +61,10 @@ CREATE TABLE ErrorLog (
     ErrorLogID INT PRIMARY KEY IDENTITY(1,1),
     ErrorDate DATETIME DEFAULT GETDATE(),
     ErrorMessage NVARCHAR(MAX) NOT NULL,
+<<<<<<< HEAD
     TableName NVARCHAR(100) NOT NULL
+=======
+    TableName nvarchar(100) NOT NULL,
+                
+>>>>>>> 307d603c608ec614ab30b8de88a74c97d419021f
 );

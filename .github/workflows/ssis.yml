@@ -1,116 +1,66 @@
-name: Deploy SSIS Packages to SQL Server
-
+name: SSIS Deployment (DEBUGGING)
+ 
 on:
   workflow_dispatch:
-
+ 
 jobs:
-  deploy-ssis:
+  build-and-deploy:
     runs-on: self-hosted
-
+    environment: local-dev
+ 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Debug workspace and user
-        shell: powershell
+ 
+      - name: Verify SSIS DevOps Tools
         run: |
-          Write-Output "Workspace path: ${{ github.workspace }}"
-          Write-Output "Current user: $env:USERDOMAIN\$env:USERNAME"
-          Get-ChildItem -Path "${{ github.workspace }}" -Recurse
-
-      - name: List all .dtproj files under workspace
-        shell: powershell
+          if not exist "C:\SSISDevOpsTools\SSISBuild.exe" (
+            echo "::error::SSISBuild.exe not found in C:\ssis-tools! Please install SSIS DevOps Tools manually from https://www.microsoft.com/download/details.aspx?id=105224"
+            exit /b 1
+          )
+          if not exist "C:\SSISDevOpsTools\SSISDeploy.exe" (
+            echo "::error::SSISDeploy.exe not found in C:\SSISDevOpsTools! Please install SSIS DevOps Tools manually from https://www.microsoft.com/download/details.aspx?id=105224"
+            exit /b 1
+          )
+          echo "SSIS DevOps Tools found in C:\ssis-tools"
+        shell: cmd
+ 
+      - name: Validate SSIS project
         run: |
-          Write-Output "Searching for .dtproj files..."
-          Get-ChildItem -Path "${{ github.workspace }}" -Filter *.dtproj -Recurse | ForEach-Object {
-            Write-Output $_.FullName
-          }
-
-      - name: List all .ispac files under temp directory
-        shell: powershell
+          if not exist "%GITHUB_WORKSPACE%\HandsOnProject\Timesheets\Integration Services Project1.dtproj" (
+            echo "::error::SSIS project file not found!"
+            exit /b 1
+          )
+        shell: cmd
+ 
+      - name: Deploy to SQL Server
         run: |
-          Write-Output "Searching for .ispac files in runner temp directory..."
-          $tempDir = "${{ runner.temp }}"
-          Get-ChildItem -Path $tempDir -Filter *.ispac -Recurse | ForEach-Object {
-            Write-Output $_.FullName
-          }
-
-      - name: Verify SSIS project file exists
-        shell: powershell
+          cd /d "%GITHUB_WORKSPACE%"
+          C:\SSISDevOpsTools\SSISDeploy.exe -s:"HandsOnProject\Timesheets\Integration Services Project1.ispac" ^
+            -d:CATALOG;"/SSISDB/TimesheetMigration/Integration Services Project1";SAMBE202519 ^
+            -authType:WIN ^
+            -l:deploy.log
+          if %ERRORLEVEL% neq 0 (
+            echo "::error::Deployment failed!"
+            type deploy.log || echo "No deploy log available"
+            exit /b 1
+          )
+        shell: cmd
+ 
+      - name: Verify Deployment
         run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigrationnew.dtproj"
-          if (-not (Test-Path "$projectFile")) {
-            Write-Error "SSIS project file not found at: $projectFile"
-            exit 1
-          }
-          Write-Output "Found SSIS project file at $projectFile"
-
-      - name: Verify SSIS build tools exist
-        shell: powershell
-        run: |
-          if (-not (Test-Path "C:\SSISDevOpsTools\SSISBuild.exe")) {
-            Write-Error "SSISBuild.exe not found in C:\SSISDevOpsTools"
-            exit 1
-          }
-          if (-not (Test-Path "C:\Program Files\Microsoft SQL Server\160\DTS\Binn\ISDeploymentWizard.exe")) {
-            Write-Error "ISDeploymentWizard.exe not found"
-            exit 1
-          }
-          if (-not (Get-Command sqlcmd.exe -ErrorAction SilentlyContinue)) {
-            Write-Error "sqlcmd.exe not found"
-            exit 1
-          }
-          Write-Output "All required tools found."
-
-      - name: Build SSIS Project
-        shell: powershell
-        run: |
-          $projectFile = "${{ github.workspace }}\HandsOnProject\Timesheets\ProjectPackages\TimesheetMigrationnew.dtproj"
-          $outputDir = "${{ runner.temp }}\SSISOutput"
-          $config = "Development"
-          if (-not (Test-Path $outputDir)) {
-            New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
-          }
-          & "C:\SSISDevOpsTools\SSISBuild.exe" -p:"$projectFile" -o:"$outputDir" -c:"$config" -l:DIAG
-          $ispacPath = Join-Path $outputDir "$config\TimesheetMigrationnew.ispac"
-          if (-not (Test-Path $ispacPath)) {
-            Write-Error "Build failed: .ispac file not found at $ispacPath"
-            exit 1
-          }
-          Write-Output "Build succeeded: $ispacPath"
-
-      - name: Deploy SSIS Project via stored procedure
-        shell: powershell
-        run: |
-          $ispacPath = "${{ runner.temp }}\SSISOutput\Development\TimesheetMigrationnew.ispac"
-          $sqlServer = "SAMBE202519"
-          $catalogDB = "SSISDB"
-          $folderName = "TimesheetMigrationnew"
-          $projectName = "TimesheetMigrationnew"
-          Add-Type -AssemblyName System.Data
-          Write-Output "Reading .ispac file from $ispacPath"
-          $projectBytes = [System.IO.File]::ReadAllBytes($ispacPath)
-          $connString = "Data Source=$sqlServer;Initial Catalog=$catalogDB;Integrated Security=SSPI;"
-          $conn = New-Object System.Data.SqlClient.SqlConnection $connString
-          $conn.Open()
-          $cmd = $conn.CreateCommand()
-          $cmd.CommandText = "[catalog].[deploy_project]"
-          $cmd.CommandType = [System.Data.CommandType]::StoredProcedure
-          $p1 = $cmd.Parameters.Add("@folder_name", [System.Data.SqlDbType]::NVarChar, 128)
-          $p1.Value = $folderName
-          $p2 = $cmd.Parameters.Add("@project_name", [System.Data.SqlDbType]::NVarChar, 128)
-          $p2.Value = $projectName
-          $p3 = $cmd.Parameters.Add("@project_stream", [System.Data.SqlDbType]::VarBinary, -1)
-          $p3.Value = $projectBytes
-          try {
-            Write-Output "Deploying project..."
-            $cmd.ExecuteNonQuery() | Out-Null
-            Write-Output "Deployment succeeded!"
-          }
-          catch {
-            Write-Error "Deployment failed: $_"
-            exit 1
-          }
-          finally {
-            $conn.Close()
-          }
+          sqlcmd -S SAMBE202519 -E -Q "SELECT name FROM SSISDB.catalog.projects WHERE name = 'Integration Services Project1'"
+          if %ERRORLEVEL% neq 0 (
+            echo "::error::Verification failed!"
+            exit /b 1
+          )
+        shell: cmd
+ 
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-artifacts
+          path: |
+          
+            %GITHUB_WORKSPACE%\build.log
+            %GITHUB_WORKSPACE%\deploy.log
